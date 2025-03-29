@@ -37,7 +37,7 @@ The approval may be graded after the due date and will not be late. However, you
 | **Category**               | **Criteria**                                                                         | **Points** |
 |----------------------------|--------------------------------------------------------------------------------------|------------|
 | **Detailed Schedule (baseline)**    | - All weekly goals have a subset of at least 4 tasks that will be individually assigned and estimated (assignments not required)<br>- All tasks have reasonable initial estimates<br>- Initial estimates with multiplier fits within a reasonable range of a weeks work in class.<br>- Actual times can be recorded to calculate the teams velocity each week to adjust future work estimates. | 5      |
-| **User Experience** | - Develop Wireframes and Mockups.<br>- At least 5 different screen layouts<br>- Screen Layouts show connections and annotations to explain how transitions or changes are effected by mouse or keyboard input. | 10         |
+| **User Experience** | - Develop Wireframes and Mockups.<br>- At least 5 different screen layouts<br>- Screen Layouts show connections and annotations to explain how transitions or changes are effected by mouse or keyboard input.<br>- Includes every possible screen you plan to create for your core features<br>- _Nice to have but not graded:_ Show where your stretch UI features will go or change the UI | 10         |
 
 ##  <a name='Rubric'></a>Phase 3 (20 pts)
 
