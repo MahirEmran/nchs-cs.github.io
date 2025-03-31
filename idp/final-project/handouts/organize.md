@@ -31,7 +31,9 @@ Think about the types of plots you want to create and how those could answer the
 The goal is to imagine what your plots might look like while not constraining yourself by your coding abilities. Consider ways to convey information while assuming data values. If you find that you're drawing simple, repetitive bar plots or line plots, then you need to dig deeper into your creativity. Get some inspiration by looking at other published reports and visualizations.  
 
 ## Good Features
+
 **Fabulous sketches will:**
+
 * Reasonably _"answer"_ all your questions  
 * Have a Title with the axes labeled  
 * Be easy to read (not crowded, not sloppy)  
@@ -42,7 +44,8 @@ The goal is to imagine what your plots might look like while not constraining yo
     * Plots of ML Model predictions  
     * Controls in interactive plots  
 
-**Things to consider: **
+**Things to consider:**
+
 * How you might annotate your plots with values  
 * Whether a curve of best fit is appropriate  
 * How statistical significance might be added  
@@ -69,14 +72,15 @@ Do not be fooled! This sketch represents `C-` quality work. The sketches illustr
 * There are only 3 plots. Ouch!  
 * The y-axes are not all labeled.  
 * The bar chart showing genre of movies does not add any value to the research question. It is good that the bars are sorted by value, but there is no point to the chart.  
-* I lack annotation. The bar chart could have values added to the top of the bars (or inside the bars). The line plots could highlight inflection points.  
-* I need more creativity. Having only barchart and line plots is not enough. While line plots are fantastic at identifying correlations, there are other plots and activities that are great at showing correlation. The following example correlation methods may not be appropriate given the data collected or my research question. Regardless, here are some other methods:  
+* Lacking annotation. The bar chart could have values added to the top of the bars (or inside the bars). The line plots could highlight inflection points.  
+* Needs more creativity. Having only barchart and line plots is not enough. While line plots are fantastic at identifying correlations, there are other plots and activities that are great at showing correlation. The following example correlation methods may not be appropriate given the data collected or my research question. Regardless, here are some other methods:  
     * [Correlation Heatmap](https://stackoverflow.com/questions/39409866/correlation-heatmap)  
-    * <a href="../../Topics/machine_learning/feature-importance.html">Machine Learning and Feature Importance</a>   
+    * Machine Learning and Feature Importance
     * Plotting Netflix vs GDP and then adding Statistical information such as `Coefficient of Determination`.  
 * The graphs do not sufficiently deter critical counter arguments. For example, even though there is a negative correlation between Box Office revenue and Netflix earnings, we could show that other popular streaming services do (or do not) correlate.  
 
 There are some positive realizations from doing these sketches that will impact my project's efforts:  
+
 * I need data by year  
 * I need to be able to do `twinx` plots--to plot lines with different scales on the same axis  
 
