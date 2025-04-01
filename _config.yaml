@@ -43,4 +43,9 @@ defaults:
       path: "idp/resources/"  # The folder where your markdown files reside
       type: "pages"        # Pages that are in this folder
     values:
-      parent: IDP Resources
+      parent: Other Resources
+  - scope:
+      path: "idp/visualizations/"
+      type: "pages"
+    values:
+      parent: Visualizations

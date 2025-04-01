@@ -1,6 +1,6 @@
 ---
 layout: default_dl
-title: IDP Resources
+title: Other Resources
 parent: IDP
 nav_order: 200
 ---

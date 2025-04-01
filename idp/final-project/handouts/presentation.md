@@ -1,6 +1,6 @@
 ---
 layout: default_dl
-parent: IDP - Final Project
+parent: Final Project
 title: Final Presentation
 nav_order: 50
 ---

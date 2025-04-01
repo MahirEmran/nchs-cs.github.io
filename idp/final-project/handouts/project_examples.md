@@ -1,6 +1,6 @@
 ---
 layout: default_dl
-parent: IDP - Final Project
+parent: Final Project
 title: Project Examples
 nav_order: 56
 ---

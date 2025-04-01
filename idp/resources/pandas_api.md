@@ -6,6 +6,7 @@ title: Pandas
 
 
 ### Both DataFrame and Series
+
 |API|Comments|  
 |---|--------|
 |`describe()`|Outputs useful statistical information about the data|  
