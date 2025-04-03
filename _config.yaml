@@ -32,6 +32,9 @@ callouts:
 
 enable_copy_code_button: true
 
+plugins:
+  - jekyll-tabs
+
 include:
   - idp/static
 
