@@ -52,11 +52,11 @@ Now consider that we have two data set examples below.
 
 1. **Stacked Area Chart:**
    - **Purpose:** Illustrates the cumulative contribution of various renewable energy sources over time, highlighting both individual and collective trends.
-   - **Example:** A chart displaying the global energy consumption from 2000 to 2020, with each segment representing a different renewable source (e.g., solar, wind, hydro). This visualization emphasizes the growth patterns and shifts in energy source prominence. citeturn0search0
+   - **Example:** A chart displaying the global energy consumption from 2000 to 2020, with each segment representing a different renewable source (e.g., solar, wind, hydro). This visualization emphasizes the growth patterns and shifts in energy source prominence.
 
 ![Stacked area](https://datavizcatalogue.com/methods/images/top_images/stacked_area_graph.png)
 
-2. **Sankey Diagram:**
+1. **Sankey Diagram:**
    - **Purpose:** Demonstrates the flow and proportion of energy consumption from different renewable sources, providing insight into the distribution and transition of energy usage.
    - **Example:** A diagram mapping the journey from various renewable energy sources to their respective consumption sectors, effectively showcasing the magnitude and direction of energy flows. 
 
