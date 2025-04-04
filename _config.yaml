@@ -50,5 +50,6 @@ defaults:
   - scope:
       path: "idp/visualizations/"
       type: "pages"
+      nav_order: 1
     values:
       parent: Visualizations
