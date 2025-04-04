@@ -68,23 +68,23 @@ Now consider that we have two data set examples below.
 
 ![Treemap](https://datavizcatalogue.com/methods/images/top_images/treemap.png)
 
-### Data Set 2: World Population Age Distribution
+## Data Set 2: World Population Age Distribution
 
 *Research Question:* What are the comparative age distributions across different continents, and how do they relate to regional socio-economic factors?
 
-## Population Pyramid:
+### Population Pyramid:
    - **Purpose:** Visualizes the age and gender distribution within a population, facilitating comparisons between different regions.
    - **Example:** Side-by-side pyramids for continents like Africa, Asia, and Europe, highlighting differences in age structures and potential socio-economic implications.
 
 ![Population pyramid](https://datavizcatalogue.com/methods/images/anatomy/population_pyramid.png)
 
-## Heat Map:
+### Heat Map:
    - **Purpose:** Represents the density of specific age groups across various continents using color gradients, making patterns and concentrations easily identifiable.
    - **Example:** A heat map where age groups are plotted against continents, with color intensity indicating the population size within each age bracket.
 
 ![Heat map](https://datavizcatalogue.com/methods/images/top_images/SVG/heatmap.svg)
 
-## Bubble Chart:
+### Bubble Chart:
    - **Purpose:** Combines age distribution data with another variable, such as GDP per capita, to explore potential correlations.
    - **Example:** A chart where each bubble represents a continent; the bubble's position indicates the median age, its size reflects the population under 15, and the color denotes GDP per capita, revealing insights into the relationship between age distribution and economic factors.
 
