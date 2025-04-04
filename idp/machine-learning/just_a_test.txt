@@ -1,42 +1,37 @@
----
-layout: default_dl
-title: Regression - Distance Study
-parent: Machine Learning
-grand_parent: IDP
-nav_order: 4
----
-
 # Regression - Distance Study
 In this study, we will use Machine Learning to create a model to predict the distance a person can throw a baseball.
 
 ## Predicting Distance
-In this hypothetical example, we will use the data found in the [Distance Case Study](../../visualizations/case_study_dist); please go to that page to view and learn more about the data. 
+In this hypothetical example, we will use the data found in the [Distance Case Study](../../visualizations/case_study_dist);
+please go to that page to view and learn more about the data. 
 To summarize, the data provides a distance of how far a person can throw a baseball. The features include: 
 age, gender, and sport.  
 
-Since we are predicting distance, a real number, we need to use a model that does Regression. Examine all the tabs below to see the Data, Code, the results of our two models, and graphs of the models' predictions.   
+Since we are predicting distance, a real number, we need to use a model that does Regression. Examine all
+the tabs below to see the Data, Code, the results of our two models, and graphs of the models' predictions.   
 
 ### Summary  
-The graphs presented in the **Model Graphs** tab are most insightful. It provide a lot of information about how the model makes predictions. While `MSE` values help us to determine that the `LinearRegressor` is better at making predictions, it is a far, far cry from providing real value.  
+The graphs presented in the **Model Graphs** tab are most insightful. It provide a lot of
+information about how the model makes predictions. While `MSE` values help us to determine that the `LinearRegressor`
+is better at making predictions, it is a far, far cry from providing real value.  
 
-Listing out the **Coefficients** and **Feature Importance** helps us understand what features are making the biggest impact on the predictions. But, again, the real value comes from the **Model Graphs**.
-
-{% tabs distance_study %}
-
-{% tab distance_study Data %}
+Listing out the **Coefficients** and **Feature Importance** helps us understand what features are
+making the biggest impact on the predictions. But, again, the real value comes from the **Model Graphs**.
+````{tab-set}
+```{tab-item} Data
 Please look at the [Distance Case Study](../../visualizations/case_study_dist). 
-Here is a scatter plot of all the data and we can see it pretty messy. There are some patterns one can extract, but very little is obvious.    
-![All Distance Data](../static/machine%20learning%20tab/fi_dist_scatter.png)  
+Here is a scatter plot of all the data and we can see it pretty messy. There are some patterns
+one can extract, but very little is obvious.    
+![All Distance Data](../../_static/fi_dist_scatter.png)  
 **Code to generate plot**
 ```python
 sns.scatterplot(x=df['age'], y=df['distance'], hue=df['sport'], size=df['gender'])
 plt.title('All Distance Data')
 plt.legend(loc='upper left', bbox_to_anchor=(1.0, 1.1))
 ```
-{% endtab %}
-
-{% tab distance_study Code %}
-This is the code used to load the data, create the models, get the **Coefficients**, and show the **Feature Importance** percentages. This code is used in the **Model Results** tab.  
+```{tab-item} Code
+This is the code used to load the data, create the models, get the **Coefficients**, and
+show the **Feature Importance** percentages. This code is used in the **Model Results** tab.  
 ```python
 def model_regression(features, labels, test_size=0.3, linear=True):
     # Split the data into training and testing sets
@@ -83,14 +78,18 @@ def load_data():
     labels = df['distance']
     return df, features, labels
 ```
-{% endtab %}
+```{tab-item} Model Results
+Let's look at the `MSE` (Mean Squared Error) for both the `LinearRegressor` and the
+`DecisionTreeRegressor`.  We see that LinearRegressor is much better on average with
+an MSE = 274 while the DecisionTreeRegressor has MSE = 453.  
 
-{% tab distance_study Model Results %}
-Let's look at the `MSE` (Mean Squared Error) for both the `LinearRegressor` and the `DecisionTreeRegressor`.  We see that LinearRegressor is much better on average with an MSE = 274 while the DecisionTreeRegressor has MSE = 453.  
+We can see from the **Coefficients** determined in the LinearRegressor that the male gender
+throwing prediction is 17.7 farther. Those who play baseball are given 15.3 boost and those
+who do no sport at all are reduced by 6. For each year you age, you lose about 0.47.  
 
-We can see from the **Coefficients** determined in the LinearRegressor that the male gender throwing prediction is 17.7 farther. Those who play baseball are given 15.3 boost and those who do no sport at all are reduced by 6. For each year you age, you lose about 0.47.  
-
-The **DecisionTreeRegressor** reveals how important it thinks each feature is. The most important to the model is `age` at 50%, then `gender` at 29%, followed by Baseball, None, and Track _dummy_ features.  
+The **DecisionTreeRegressor** reveals how important it thinks each feature is. The most
+important to the model is `age` at 50%, then `gender` at 29%, followed by Baseball, None,
+and Track _dummy_ features.  
 
 The `LinearRegressor` is much more transparent in how it does its predictions. Approx:   
 $dist = 54 + 17*male - 0.46*age + 15*Baseball + 4.9*Football - 6*None - ...$
@@ -142,17 +141,22 @@ print('\nDecisionTreeRegressor Info')
 dtm = model_regression(features, labels, linear=False)
 show_importance(dtm, features)
 ```
-{% endtab %}
+```{tab-item} Model Graphs
+To get an truly insightful understanding of how a model is make its predictions, it is handy
+to make a graph of the predictions from the features. For example, below you'll see how the LinearRegressor
+predicts that women who play baseball can throw farther than men who do no sports at all.  
 
-{% tab distance_study Model Graphs %}
-To get an truly insightful understanding of how a model is make its predictions, it is handy to make a graph of the predictions from the features. For example, below you'll see how the LinearRegressor predicts that women who play baseball can throw farther than men who do no sports at all.  
+To generate these graphs, we had to create a `DataFrame` with all possible combinations
+of the features and then do a prediction. The predictions are graphed here:  
 
-To generate these graphs, we had to create a `DataFrame` with all possible combinations of the features and then do a prediction. The predictions are graphed here:  
+![Linear Regressor Predictions](../../_static/fi_linear_predictions.png)
+![Decision Tree Regressor Predictions](../../_static/fi_dt_predictions.png)  
 
-![Linear Regressor Predictions](../static/machine%20learning%20tab/fi_linear_predictions.png)
-![Decision Tree Regressor Predictions](../static/machine%20learning%20tab/fi_dt_predictions.png)  
-
-> **NOTE**: The DecisionTreeRegressor was not bounded when learning. The complexity of the predictions could have been simplified and, perhaps, the MSE could have been reduced if we had optimized max_depth via **hyperparameter tuning**. For simplicity, we did not do this. Having the complexity also helps establish that the model output was quite complicated and likely represented some **over fitting**.  
+> **NOTE**: The DecisionTreeRegressor was not bounded when learning. The complexity of
+> the predictions could have been simplified and, perhaps, the MSE could have been reduced if
+> we had optimized max_depth via **hyperparameter tuning**. For simplicity, we did not
+> do this. Having the complexity also helps establish that the model output was quite
+> complicated and likely represented some **over fitting**.  
 
 **Code to create graphs**  
 ```python
@@ -207,6 +211,4 @@ def graph_dtr_predictions(features):
     plt.legend(loc='upper left', bbox_to_anchor=(1.0, 1.1))
     plt.ylabel('Predicted Distance')
 ```
-{% endtab %}
-
-{% endtabs %}
+````
