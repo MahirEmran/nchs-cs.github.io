@@ -17,7 +17,7 @@ Create advanced data visualizations that effectively communicate complex data in
 Explore one of the following resources for five minutes
 
 1. [Data Visualization Catalogue](https://datavizcatalogue.com/)
-2. [Datylon's guide on types of charts and graphs](https://www.datylon.com/blog/types-of-charts-graphs-examples-data-visualization)
+2. [Seaborn examples](https://seaborn.pydata.org/examples/)
 3. [How to Choose the Right Data Visualization](https://www.atlassian.com/data/charts/how-to-choose-data-visualization)
 4. [NCHS Data Visualization Gallery](https://www.cdc.gov/nchs/data-visualization/index.htm)
 5. [Data Viz Project](https://datavizproject.com/)
