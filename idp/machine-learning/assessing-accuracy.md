@@ -6,7 +6,7 @@ grand_parent: IDP
 nav_order: 2
 ---
 
-# Assessing Accuracy 
+# Assessing Accuracy
 
 Evaluating the accuracy of a machine learning (ML) model is a crucial step to determine its performance and effectiveness. The choice of evaluation metrics depends on the type of problem you're solving (classification, regression, etc.), and it's important to select metrics that are relevant to your specific goals. Here's a general process for assessing the accuracy of an ML model.
 
