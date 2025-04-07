@@ -4,14 +4,13 @@ title: Curve of Best Fit
 ---
 
 # Curve of Best Fit
-{% include toc.md %}
-
-In this section, we will show how you can identify a Curve of Best Fit for a set of data points. The curve can be anything an equation can express, but there are some limitations with discontinuous curves and asymptotes.
-The easiest is finding a line of best fit. Secondarily, you can find the polynomial that fits the data points. Tertiary, you can provide an equation of a continuous curve involving a combination of functions such as sine or logarithm. 
+In this section, we will show how you can identify a Curve of Best Fit for a set of data points.
+The curve can be anything an equation can express, but there are some limitations with discontinuous curves and asymptotes.
+The easiest is finding a line of best fit. Secondarily, you can find the polynomial that fits the data points. Tertiary,
+you can provide an equation of a continuous curve involving a combination of functions such as sine or logarithm. 
 Lastly, you can have a non-continuous curve like Sigmoid or `y = 1 / (x - 3).  
 
 We will review four different ways to get the equation of a fitted curve.  
-
 1. `scipy.stats.linregress`: a statistical method that identifies a line's coefficients as well some statistical information.  
 2. `numpy.polyfit`: a Numpy method that identifies the coefficients of any n-ordered polynomial.  
 3. `scipy.stats.curve_fit`: a statistical method that identifies the coefficients of **_any_ function** as well as some statistical information about the fit.  
@@ -27,9 +26,9 @@ we may have just asked Seaborn to plot a regression line and the line presented 
 data, but is the data linearly related at all? This is a different, but also important question! This is
 answered by looking at the `Coefficient of Determination`.  
 
-## Coefficient of Determination (R^<sup>2</sup>)
+### Understanding R² (Coefficient of Determination)
 
-R-squared $R^2$ is a statistical measure that provides an indication of how well the line of best fit (the regression line) fits the data points. It quantifies the proportion of the variance in the dependent variable (y) that can be explained by the independent variable (x) in a linear regression model.
+R-squared ($R^2$) is a statistical measure that provides an indication of how well the line of best fit (the regression line) fits the data points. It quantifies the proportion of the variance in the dependent variable (y) that can be explained by the independent variable (x) in a linear regression model.
 
 The R-squared value ranges from 0 to 1. A value of 1 indicates that the regression line perfectly predicts the dependent variable, meaning all the data points lie exactly on the line. A value of 0 indicates that the regression line does not explain any of the variance in the dependent variable, and the points are scattered randomly.
 
@@ -47,7 +46,9 @@ Here is a table that shows some of the most frequent API we used in this section
 |[curve_fit](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit) |A statistical method that identifies the coefficients of **_any_ function** as well as some statistical information about the fit.|  
 |[mean_squared_error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html)|Calculates the Mean Squared Error (MSE) from two sets of y_data points.|  
 
-### Code Imports
+### Required Imports
+
+Below are the necessary imports for the code examples in this section:
 
 ```python
 import random
@@ -68,17 +69,19 @@ sns.set()
 ```
 
 ## Seaborn Regression
-
 In many research projects, it is beneficial to find a curved line that best fits the data.
 Students will often do a scatter plot of the data points and have Seaborn do a regression plot
 which shows a line of best fit with a shaded area around the line representing
 a 95% confidence interval. None of that is horrible. It is convenient to have a line of best fit, 
 if there is one. And, `regplot` will draw one for you by default.  
 
-### Simple regplot
+{% tabs seaborn_regression %}
 
+{% tab seaborn_regression Simple regplot %}
 ![regplot](../static/bestfit_simple_reg.png)  
+{% endtab %}
 
+{% tab seaborn_regression Code %}
 ```python
 true_slope = 3/4
 true_intercept = -4
@@ -89,9 +92,9 @@ y_data = [ x*true_slope + random.randint(-5, 5) + true_intercept for x in x_data
 plt.grid(True, linestyle='--', linewidth=0.5, color='black')
 sns.regplot(x=x_data, y=y_data)
 ```
+{% endtab %}
 
-### Comments
-
+{% tab seaborn_regression Comments %}
 This is about as simple as it gets. We generated `x_data` with a simple comprehension. We could
 have also used `np.linspace()`. We similarly created the `y_data` and added some noise with
 `random.randint(-5, 5)`. By default, `regplot` will add a regression line and a confidence
@@ -112,29 +115,31 @@ Note that in your research, you may want to extend the curve of best fit out fur
 how to do this in the next plot below.  
 
 Here are some helpful links:  
+<a href="https://seaborn.pydata.org/tutorial/regression.html" target="_blank">Seaborn Tutorial</a>    
+<a href="http://seaborn.pydata.org/generated/seaborn.regplot.html" target="_blank">Seaborn regplot API</a>    
 
-- <a href="https://seaborn.pydata.org/tutorial/regression.html" target="_blank">Seaborn Tutorial</a>    
-- <a href="http://seaborn.pydata.org/generated/seaborn.regplot.html" target="_blank">Seaborn regplot API</a>    
-
-### Lastly
-
-It is common to hide the shaded confidence interval by setting the named parameter, `ci` to `None`, as follows:
+**Note:** It is common to hide the shaded confidence interval in Seaborn's `regplot` by setting the named parameter `ci` to `None`, as shown below:
 
 ```python
 sns.regplot(x_data, y_data, ci=None)
 ```
+{% endtab %}
+
+{% endtabs %}
 
 ## SciPy Linregress
 
-### Annotated Regression
+{% tabs scipy_linregress %}
 
+{% tab scipy_linregress Annotated Regression %}
 This plot shows a scatter plot of data drawn with `plt.scatter`. It then finds the line of best fit using
 `linregress`. It plots it out, extending an extra 20 values on the x-axis, and it provides data on the
 graph itself. It shows what the slope and y-intercept are (m & b), gives the $R^2$ value, and lastly
 it presents the Mean Squared Error.  
-
 ![regplot](../static/bestfit_linregress.png)
+{% endtab %}
 
+{% tab scipy_linregress Code %}
 ```python
 # use the same x_data & y_data in example above.
 # To find details about the line, we need to use linregress.
@@ -164,9 +169,9 @@ plt.ylabel('Y')
 plt.text(42, 20, f'm = {slope:.2f}\nb = {intercept:.2f}\nR2 = {r_value**2:.2f}\nMSE = {mse:.2f}', 
          ha='left', va='top', fontsize=14)
 ```
+{% endtab %}
 
-### Comments
-
+{% tab scipy_linregress Comments %}
 The nice thing about using `linregress` is that it will provide multiple pieces of information
 for us in one simple call. It gives use the slope and intercept values, along with the `r_value` that
 we can square to get the Coefficient of Determination.  
@@ -177,24 +182,28 @@ some flexibility in how the caller wants to receive the values. The caller can k
 the object, or the specific values can be immediately unpacked upon receipt. Cool!  
 
 Example call: 
-
 ```python   
     line_info = linregress(x_data, y_data)
     print(f'R2={line_info.r_value**2:.2f}')  
 ```
+{% endtab %}
+
+{% endtabs %}
 
 ## Numpy Polyfit  
-
 Here we use `np.polyfit` to find the best fit for a line and a parabola. Put another way,
 the coefficients of a polynomial of degree 1 and 2.  
 
-### Best Fit Plot
+{% tabs numpy_polyfit %}
+
+{% tab numpy_polyfit Best Fit Plot %}
 The graph shows many things: scatter plot of data, line of best fit, parabola of best fit,
 a legend, coefficients of the parabola of best fit, and MSE of both the parabola and line. Whew!  
 It shows that the parabola is a much better fit for the points.  
-
 ![regplot](../static/bestfit_polyfit.png)
+{% endtab %}
 
+{% tab numpy_polyfit Code %}
 ```python
 def add_inset_text(fig, position, actual, coeffs):
     # print values in an inset positioned in figure percentages [x, y, width, height]
@@ -234,11 +243,11 @@ def best_parabola_fit():
     # Use the grid in the plot and set the line style to black & dashed
     plt.grid(True, linestyle='--', linewidth=0.5, color='black')
     
-    # Eliminate the confidence interval shading of the parapola and color the line red
+    # Eliminate the confidence interval shading of the parabola and color the line red
     sns.regplot(x=x_data, y=y_data, ax=ax, order=2, ci=None, line_kws={'color':'red'})
     
     # Determine if a linear line is a better fit using MSE
-    # find the coefficients of the parbola that best fits the points generated
+    # find the coefficients of the parabola that best fits the points generated
     # The coefficients are ordered from high order to lower order
     coeffs_2 = np.polyfit(x_data, y_data, 2)
     y_predicted_2 = [ coeffs_2[0]*x**2 + coeffs_2[1]*x + coeffs_2[2] for x in x_data]
@@ -266,9 +275,9 @@ def best_parabola_fit():
     # even when setting label=''values' during plots, we need to set the label strings here.
     ax.legend(['Parabola Fit', 'Line Fit', 'Actual'], loc='lower right')
 ```
+{% endtab %}
 
-### Comments
-
+{% tab numpy_polyfit Comments %}
 In this code we use `sns.regplot` with `order=2` to draw a portion of a parabola (in red) that best 
 fits our set of points (in blue). The order, value 2, tell Seaborn the highest exponent in the polynomial. 
 A value of 2 means a parabola. The default value of 1 is a line. We also set `ci=None` to avoid drawing
@@ -291,17 +300,18 @@ in a "vector" (numpy array of values) without having to do a for-loop or compreh
 this with a regular list; it requires a numpy array. Convention often has us representing a vector of
 values with a capital letter which can sometimes be confused with a constant. Here would be another
 conventional way to do vector math.  
-
-`   X = np.array(list_of_x_values)`
+`   X = np.array(list_of_x_values)`  
 `   Y = 3 * X + 4`  
 
 Lastly, we make use of an inset to annotate some text to the graph so the reader can see how much
 better the curve is over the line. MSE values are relative and the values depend on the scale of the numbers.
 MSE values are most valuable when compared against another MSE value. In this case we can see how the 
 parabola's MSE value is close to half the value of the line's MSE.  
+{% endtab %}
+
+{% endtabs %}
 
 ## Curve Fit
-
 Here we see how we can find a curve of best fit to a custom, continuous curve: a logarithmically degrading, sinusoidal wave. 
 This is a continuous curve with no x-value that causes a division by zero. This allows us to use the `curve_fit` API. It will
 highly unlikely that you'll ever want to fit a set of points to a curve like this. In the event that you ever encounter
@@ -309,24 +319,20 @@ wave data, you'll more likely want to leverage <a href="https://youtu.be/spUNpyF
 reason we use a sinusoidal wave is simply to illustrate how `curve_fit` can be used on any curve.  
 
 To fit a line to a curve:  
-
 1. Identify an equation that you want to fit. You'll create a method that has the generalized
 equation with coefficients that are unknown. For example, a line is: `y = mx + b` where curve_fit will identify the values
 for `m` and `b`. You may have a polynomial curve such as: `y = a*x**4 + b*x**3 + c*x**2 + d*x + e` and curve_fit will
 find the values for `a` through `e`. If you know want to fix one of the values, you can use a constant to the known
 value. Write a method that takes `x` along with the coefficients are arguments. For example:  
-
 ```python
 def my_function(x, a, b, c):
     return a*x**2 + b*x + c
 ```
-
 2. Select a set of values for the coefficients that represents a valid guess. Assign these coefficients to a
 list, often named, `p0`. You'll provide `p0` as an argument to `curve_fit` to help it get started as well as to
 understand how many coefficients to solve for.  
 3.  You'll call `curve_fit` with the following arguments: method pointer, set of points you want to fit, along 
 with the initial guess. For example:
-
 ```python
 # curve_fit returns a tuple. The first item is a list of coefficients. The second
 # is statistical information about the coefficients. In this example we ignore
@@ -335,8 +341,9 @@ with the initial guess. For example:
 coeffs, _ = curve_fit(logarithmic_sinusoidal_wave, x_data, y_data, p0=p0)
 ```
 
-### Sinusoidal  
+{% tabs curve_fit %}
 
+{% tab curve_fit Sinusoidal %}
 In our custom curve, we have coefficients for each of the following: amplitude, frequency, rate of logarithmic 
 degradation, phase and offset.  
 
@@ -345,9 +352,9 @@ it uses all the default values (10, 1, 0.2, 0, 0). This is why the title of the 
 
 The bottom plot is the same equation but with specific coefficients provided (15, 0.5, 0.1, 0, 10). It 
 shows how the coefficients impact the curve. Pay attention to the values on the y-axis.   
-
 ![regplot](../static/bestfit_curve_two.png)
 
+### See Code
 ```python
 def logarithmic_sinusoidal_wave(x, a=10, frequency=1, r=0.2, phase=0, offset=0):
     # Logarithmic convergence of amplitude
@@ -377,22 +384,23 @@ def show_sinusoidal_curve():
     
     plt.suptitle('Logarithmic Sinusoidal Waves', fontsize=18)
 ```
+{% endtab %}
 
-### Best Fit
-
+{% tab curve_fit Best Fit %}
 This plot shows the generated data points (that have noise) as small red dots. These data points
-were derived by adding a noise $\pm 1$ to the sinusoidal equation using the arguments (15, 0.5, 0.1, 0, 10).  
+were derived by adding a noise ($\pm 1$) to the sinusoidal equation using the arguments (15, 0.5, 0.1, 0, 10).  
 
 The blue line is the best fit curve that fits the `logarithmic_sinusoidal_wave` (provided
-in the code of the Sinusoidal section.)  
+in the code of the Sinusoidal tab.)  
 
 The inset shows how the actual arguments used when generating the points with noise, and it compares
 them against the coefficients for the curve of best fit. Here you can see that it slightly underestimated
 the amplitude. It was 0.15 off of the frequency, only 0.01 way from the rate of degradation, and only
 0.02 away from the offset. The phase was 6.56 off of the actual phase used.  
-
 ![regplot](../static/bestfit_curve_fit.png)
+{% endtab %}
 
+{% tab curve_fit Code %}
 ```python
  def find_curve_best_fit():
     def generate_points(noise, *args):
@@ -423,9 +431,9 @@ the amplitude. It was 0.15 off of the frequency, only 0.01 way from the rate of 
     pos = [ .4, .14, .3, .28 ]
     add_inset_text(fig, pos, wave_args, coeffs)
 ```
+{% endtab %}
 
-### Comments
-
+{% tab curve_fit Comments %}
 The code for the sinusoidal curve equation is provided in the 'See Code' dropdown in the 
 'Sinusoidal' tab. In this method we chose to have all the coefficients be named arguments with
 default values. This allows us to to easily modify our code to hold some values constant and
@@ -446,7 +454,7 @@ collects and repacks them into the tuple named 'args'. In turn, it can easily ca
 with the tuple. Altogether, this allows us to generate points and solve for coefficients using as many or
 as few arguments as we want, using default values for the rest.
 
-<!-- Confusing?  See [Arguments](../Topics/built-in/arguments) for more information.  -->
+Confusing? See [Arguments](../Topics/built-in/arguments) for more information.  
 
 When generating our data points, we make use of `linspace` which is a nifty method that allows us
 to quickly set a minimum, maximum, and an arbitrary number of points. It generates values
@@ -467,16 +475,12 @@ It can be frustrating that plotting methods often have named arguments with diff
 When we call `scatter` on the axis object, we set `s` to change the size of the markers (or dots).   
 
 To add more value to the graph, we create an inset with text on the graph.  
+{% endtab %}
 
-<!--
+{% endtabs %}
+
 # ML regressions
-
 The study on distance using Machine Learning models is done on another page.  
 
 ### See ML Study
-
-[Predicting Distance](../machine_learning/ML.md#)
-
 <a href='../Topics/machine_learning/feature-importance#predicting-distance'>Predicting Distance</a>
-
--->
