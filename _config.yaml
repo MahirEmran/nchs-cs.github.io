@@ -53,3 +53,8 @@ defaults:
       nav_order: 1
     values:
       parent: Visualizations
+  - scope:
+      path: "idp/machine-learning/"
+      type: "pages"
+    values:
+      parent: Machine Learning
