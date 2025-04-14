@@ -19,8 +19,8 @@ Your task list **must** have weekly goals. You can update these each week but th
 | Wed, Mar 26 | 13| Project Proposal Phase 1 Due |
 | Wed, Apr 2 | 14 | Project Proposal Phase 2 Due |
 | April 7 - 11 | 15 | Spring Break |
-| Mon, April 14 | 16| First Design Doc Due (Phase 3)<br>Start coding |
-| Mon, April 28 | 18 | Mid-point check: Stabilize, Refactor, Redocument |
+| Fri, April 19 | 16| First Design Doc Due (Phase 3)<br>Start coding |
+| Mon, May 5 | 19 | Mid-point check: Stabilize, Refactor, Redocument |
 | | 16 - 22 | Development |
 | Mon, Jun 2 | 23 | Final Design Doc Due |
 | | 23, 24 | Presentations - 2 / day - Seniors first |
