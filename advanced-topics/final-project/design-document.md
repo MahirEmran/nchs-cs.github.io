@@ -191,7 +191,7 @@ Lastly, consider what classes you will create, their roles & responsibilities, h
 
 You should consider at a minimum to create the following diagrams:
 
-**Class Diagram**: This diagram illustrates the static structure of a system by showing its classes, attributes, operations, and the relationships among objects. It provides a clear blueprint of the system's architecture, essential for understanding how different components interact. 
+**Class Diagram**: This diagram illustrates the static structure of a system by showing its classes, attributes, operations, and the relationships among objects. It provides a clear blueprint of the system's architecture, essential for understanding how different components interact. There is an excellent reference and example on how to create class diagrams [here](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/).
 
 **Sequence Diagram**: Depicting the sequence of messages exchanged among objects, sequence diagrams detail how operations are carried out, including the order of interactions. They are instrumental in modeling the dynamic behavior of a system, especially for complex processes. 
 
