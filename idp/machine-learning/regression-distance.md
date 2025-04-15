@@ -10,7 +10,7 @@ nav_order: 4
 In this study, we will use Machine Learning to create a model to predict the distance a person can throw a baseball.
 
 ## Predicting Distance
-In this hypothetical example, we will use the data found in the [Distance Case Study](../../visualizations/case_study_dist); please go to that page to view and learn more about the data. 
+In this hypothetical example, we will use the data found in the [Distance Case Study](../visualizations/case_study_dist) please go to that page to view and learn more about the data. 
 To summarize, the data provides a distance of how far a person can throw a baseball. The features include: 
 age, gender, and sport.  
 
@@ -24,7 +24,7 @@ Listing out the **Coefficients** and **Feature Importance** helps us understand 
 {% tabs distance_study %}
 
 {% tab distance_study Data %}
-Please look at the [Distance Case Study](../../visualizations/case_study_dist). 
+Please look at the [Distance Case Study](../visualizations/case_study_dist). 
 Here is a scatter plot of all the data and we can see it pretty messy. There are some patterns one can extract, but very little is obvious.    
 ![All Distance Data](../static/fi_dist_scatter.png)  
 **Code to generate plot**
