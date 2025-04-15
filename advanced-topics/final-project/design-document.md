@@ -195,7 +195,7 @@ You should consider at a minimum to create the following diagrams:
 
 **Sequence Diagram**: Depicting the sequence of messages exchanged among objects, sequence diagrams detail how operations are carried out, including the order of interactions. They are instrumental in modeling the dynamic behavior of a system, especially for complex processes. 
 
-**Use Case Diagram**: This diagram captures the functional requirements of a system by illustrating the interactions between users (actors) and the system itself. It helps in identifying and organizing system requirements, ensuring that all user interactions are considered during development. You may decide on a different diagram to this one if your application has minimal user interaction.
+**Flow Chart Diagram**: A flowchart diagram in a detailed design document shows the step-by-step logic of a process or method. It uses shapes like diamonds (decisions) and rectangles (actions) to represent control flow. Flowcharts are ideal for illustrating branching paths, loops, or procedural algorithms. They help readers visualize how specific game features or functions work internally. Use them when the logic is too complex for plain text or pseudocode alone.
 
 #### Class Roles & Responsibilities
 
