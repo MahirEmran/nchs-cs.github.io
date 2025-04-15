@@ -25,4 +25,4 @@ Your task list **must** have weekly goals. You can update these each week but th
 | Mon, Jun 2 | 23 | Final Design Doc Due |
 | | 23, 24 | Presentations - 2 / day - Seniors first |
 | Mon, June 9 | 24 | Last day for seniors | 
-| ?Tue, June 24? | 26| Last day of school |
+| Fri, June 20 | 26| Last day of school |

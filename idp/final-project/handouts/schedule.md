@@ -18,4 +18,4 @@ This is the detailed schedule for the final project (subject to change)
 | Apr 28-May 2 | Final MCQ/FRQ |
 | Mon, May 26 | Final Due<br>Start of Presentations (Seniors First) |
 | Mon, June 9 | Last day for seniors | 
-| ?Tue, June 24? | Last day of school |
+| Fri, June 20 | Last day of school |
