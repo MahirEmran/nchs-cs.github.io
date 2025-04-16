@@ -95,8 +95,12 @@ The **DecisionTreeRegressor** reveals how important it thinks each feature is. T
 The `LinearRegressor` is much more transparent in how it does its predictions. Approx:   
 $dist = 54 + 17*male - 0.46*age + 15*Baseball + 4.9*Football - 6*None - ...$
 
-> **OUTPUT**  
+{% endtab %}
+
+{% tab distance_study Output %}
+
 > LinearRegression Info  
+> 
 > MSE : 273.95  
 > Intercept: 54  
 > male   : 17.787  
@@ -113,7 +117,7 @@ $dist = 54 + 17*male - 0.46*age + 15*Baseball + 4.9*Football - 6*None - ...$
 > sport_Tennis   : -1.729  
 > sport_Track   : -1.290  
 > sport_XCountry   : -2.064  
->    
+> 
 > DecisionTreeRegressor Info  
 > MSE : 452.93  
 > Feature: male, Importance: 28.59%  
@@ -131,7 +135,10 @@ $dist = 54 + 17*male - 0.46*age + 15*Baseball + 4.9*Football - 6*None - ...$
 > Feature: sport_Track, Importance: 2.27%  
 > Feature: sport_XCountry, Importance: 1.83%  
 
-**Code used**
+{% endtab %}
+
+{% tab distance_study Code %}
+
 ```python
 df, features, labels = load_data()
 
@@ -142,9 +149,11 @@ print('\nDecisionTreeRegressor Info')
 dtm = model_regression(features, labels, linear=False)
 show_importance(dtm, features)
 ```
+
 {% endtab %}
 
-{% tab distance_study Model Graphs %}
+{% tab distance_study Graphs %}
+
 To get an truly insightful understanding of how a model is make its predictions, it is handy to make a graph of the predictions from the features. For example, below you'll see how the LinearRegressor predicts that women who play baseball can throw farther than men who do no sports at all.  
 
 To generate these graphs, we had to create a `DataFrame` with all possible combinations of the features and then do a prediction. The predictions are graphed here:  

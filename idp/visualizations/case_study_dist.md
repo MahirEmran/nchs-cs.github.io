@@ -889,7 +889,6 @@ def plot_all_4_resamples():
 
 # Machine Learning
 
-TODO: We’ve created a ML model that predicts distance based on the three features: gender, sport, and age. (I think) the results show that the model is not very accurate at predicting.
+You can go [here](../machine-learning/regression-distance) to view more results that show how creating an ML model can help predicts distance based on the three features: gender, sport, and age. 
 
-- (Insert accuracy)  
-- (Insert code)
+Do you think the results show that the model is accurate at predicting, or not?
