@@ -18,6 +18,10 @@ General folder link: [https://drive.google.com/drive/folders/12xauPUfAQIYjcHBSxN
 
 Credits to:
 * _Exploring Factors Affecting Literacy Rates & Disparities Across Countries_ by Mahir Emran & Saanika Fadia
+* _COVID-19 Analysis_ by Nabu Bruk & Shrirang Rathi
+* _Analyzing Draft Busts; What Has Teams Making The Wrong Move?_ by Matthew Kokhan
+* _Implications of Gaming on Lifestyles of Young Adults_ by Anvi Karpoor & Thanishkaa Saravannae
+* _Global Population Trends: Fertility, Life Expectancy, and Economic Correlations_ by Michelle Chung & Ishita Mundra
 
 
 
