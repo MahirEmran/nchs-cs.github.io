@@ -1,0 +1,43 @@
+name: Broken Link Report
+description: Report a broken link found on the website.
+labels: [bug, broken-link]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us find broken links! Please fill out the details below.
+
+  - type: input
+    id: source-page
+    attributes:
+      label: Source Page URL
+      description: On which page did you find the broken link?
+      placeholder: https://yourwebsite.com/page
+    validations:
+      required: true
+
+  - type: input
+    id: link-text
+    attributes:
+      label: Link Text
+      description: What text was shown for the broken link?
+      placeholder: e.g., "Click here for more info"
+    validations:
+      required: true
+
+  - type: input
+    id: destination-url
+    attributes:
+      label: Destination URL
+      description: What was the intended destination URL of the broken link?
+      placeholder: https://destinationlink.com
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other context or screenshots that might help.
+      placeholder: e.g., "The link leads to a 404 page."
+      render: markdown
