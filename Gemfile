@@ -14,3 +14,7 @@ gem "sassc", "~> 2.4.0"  # Ensure sassc is used instead of Dart Sass
 # gem 'jekyll-github-metadata', group: :jekyll_plugins # Required for site variable url
 
 # gem "github-pages" # I think not needed because of pages.yml action script
+
+group :jekyll_plugins do
+  gem "jekyll-tabs"
+end

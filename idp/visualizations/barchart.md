@@ -6,44 +6,40 @@ title: Bar Charts
 # Bar Charts
 {% include toc.md %}
 
-## Overview
-
-**Bar charts are good when:**
-
-* The x-axis is categorical and does not have a natural order (e.g. Country names).  
-* There are very few points to show (e.g. 4 or less)  
+Bar charts are good when:  
+* The x-axis is categorical and does not have a natural order (e.g., Country names).  
+* There are very few points to show (e.g., 4 or less)  
 * There isn't an obvious relationship to the prior value on the x-axis (because they are categorical).  
 * You want to use color to emphasize the height or illustrate a relationship to another value.  
 * You have a count you want to represent   
-  
-**Bar charts are NOT good when:**
 
-* You're attempting to show a correlation. (e.g. more X means more Y)  
-* The data are intended to be continuous and not discrete  
-* There are a lot of points to show (e.g. 20 or more)
+Bar charts are NOT good when:  
+* You're attempting to show a correlation (e.g., more X means more Y).  
+* The data are intended to be continuous and not discrete.  
+* There are a lot of points to show (e.g., 20 or more).
 
-There are a lot of different libraries and methods to create bar charts. Here is a quick summary. Details are found in the examples below.
+There are a lot of different libraries and methods to create bar charts. Here is a quick summary. Details are found in the examples below.  
 
-| API | When to use |
-|---|-----------|
-|`df.plot(kind='bar')`|There is only one value per category|
-|`df.plot.barh()`|There is one value per category and horizontal bars adds meaning or there are many categories to show| 
-|`plt.bar()`|Essentially the same as `df.plot`, but you may not have a DataFrame handy|  
-|`plt.hist()`|You want to count occurrences|  
-|`sns.barplot()`|There are many values per category to be averaged. The data can be structured differently. |
-|`sns.catplot(kind='bar')`|Effectively the same as `sns.barplot()`|    
-
+| API                   | When to use                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| `df.plot(kind='bar')` | There is only one value per category                                        |
+| `df.plot.barh()`      | There is one value per category and horizontal bars adds meaning or there are many categories to show |
+| `plt.bar()`           | Essentially the same as `df.plot`, but you may not have a DataFrame handy   |
+| `plt.hist()`          | You want to count occurrences                                               |
+| `sns.barplot()`       | There are many values per category to be averaged. The data can be structured differently. |
+| `sns.catplot(kind='bar')` | Effectively the same as `sns.barplot()`                                 |
 
 ## Positive vs Negative Bars
 
-In this example bar chart you'll see that the positive values have green bars
-while the negative values have red bars. The example below only uses two colors
-to emphasize the direction of change. We use a bar chart here despite there being
-many different years to plot because the green/red colors emphasize the relative changes nicely.
+In this example bar chart you'll see that the positive values have green bars while the negative values have red bars. The example below only uses two colors to emphasize the direction of change. We use a bar chart here despite there being many different years to plot because the green/red colors emphasize the relative changes nicely.
 
+{% tabs pos_neg_bars %}
 
-![bar chart](../static/annual_change.png)
+{% tab pos_neg_bars Image %}
+![Bar Chart](../static/annual_change.png)
+{% endtab %}
 
+{% tab pos_neg_bars Code %}
 ```python
 def pos_neg_bar_chart(df):
     # first create a figure with one axis
@@ -62,26 +58,32 @@ def pos_neg_bar_chart(df):
     # slant the dates to be at an angle
     fig.autofmt_xdate()
 ```
+{% endtab %}
 
-### Data
-
+{% tab pos_neg_bars Data %}
 Here are the first few lines of data in the DataFrame.  
-![bar chart](../static/inflation_data.jpg)
+![Bar Chart](../static/inflation_data.jpg)
+{% endtab %}
 
-### Comments
-
+{% tab pos_neg_bars Comments %}
 * The x-axis label has only a few years listed because of the method `plt.xticks(np.arange(0, 61, 10))`. This reduces the number of ticks in the graph and makes it much more readable.  
-* The years on the x-axis look nice due to the `xticks` call as well as `fig.autofmt_xdate()`. One could instead use `plot.xticks(rotation=45)` to provide a custom rotation of the x-label.  
+* The years on the x-axis look nice due to the `xticks` call as well as `fig.autofmt_xdate()`. One could instead use `plt.xticks(rotation=45)` to provide a custom rotation of the x-label.  
 * The Title and y-axis labels use the phrase `Change in` meaning that the value is relative to the prior year. The chart does not plot the actual inflation rate of that year (which is almost always positive).    
+{% endtab %}
+
+{% endtabs %}
 
 ## Overlayed Bars
 
-This is a bar chart that has the values overlayed one on top of the other. The values are NOT stacked. This means that the
-base of the tall bar is at the bottom: the top of the bar has a height as denoted on the y-axis.
-This example shows how to overlay bar charts as well as to annotate the bars with a values. 
+This is a bar chart that has the values overlayed one on top of the other. The values are NOT stacked. This means that the base of the tall bar is at the bottom: the top of the bar has a height as denoted on the y-axis. This example shows how to overlay bar charts as well as to annotate the bars with a values.
 
-![bar chart](../static/annotated_bars.png)
+{% tabs overlayed_bars %}
 
+{% tab overlayed_bars Image %}
+![Bar Chart](../static/annotated_bars.png)
+{% endtab %}
+
+{% tab overlayed_bars Plot Code %}
 ```python
 def annotated_bars(df):
     # generate a 'payback' column
@@ -108,9 +110,10 @@ def annotated_bars(df):
     plt.legend()
     plt.title('Investments & Returns')
 ```
+{% endtab %}
 
-<a href="https://stackoverflow.com/questions/28931224/how-to-add-value-labels-on-a-bar-chart" target="_blank">Code source</a>
-
+{% tab overlayed_bars Annotation Code %}
+Code source: [StackOverflow](https://stackoverflow.com/questions/28931224/how-to-add-value-labels-on-a-bar-chart)
 ```python
 def add_value_labels(ax, values, fmt="{:.1f}", spacing=2):
     """
@@ -154,28 +157,34 @@ def add_value_labels(ax, values, fmt="{:.1f}", spacing=2):
             va=va)                      # Vertically align label differently for
                                         # positive and negative values.
 ```
+{% endtab %}
 
-### Data
-Here is the complete set of data in the DataFrame. Notice how the annotated values are not present in this 
-initial dataframe. Instead, the plotting code calculates the "payback factor" and adds this column before
-plotting. 
+{% tab overlayed_bars Data %}
+Here is the complete set of data in the DataFrame. Notice how the annotated values are not present in this initial dataframe. Instead, the plotting code calculates the "payback factor" and adds this column before plotting. 
+![Bar Chart](../static/annotation_data.jpg)
+{% endtab %}
 
-![bar chart](../static/annotation_data.jpg)
-
-### Comments
-
+{% tab overlayed_bars Comments %}
 * We broke out the annotation code separately because there is a lot going on there.  
 * The overlayed bars is accomplished by plotting two bar charts, one with shorter bars on top of another with taller bars. The second plot covers up the first. If the second plot has values greater than the first, then the first plot's bars will be hidden.  
 * The annotation code gets a bunch of rectangles (via `ax.patches`) that reveals the location of each bar in the plot. In creating this figure we have plotted multiple bar charts, so we need to annotate immediately after the first chart is plotted, otherwise we'd get many more rectangles due to the second plot.  
 * We use custom colors for the bars using the `#RRGGBB` syntax.  
 * The figure would be too narrow for our tastes, so we increase the figure size when calling `subplots`.  
+{% endtab %}
+
+{% endtabs %}
 
 ## Sorted Bars
 
-Bar charts usually have an x-axis that doesn't have a natural sorting order. However, sorting by the height of the bars is a valuable way to present data and insight.  
+Bar charts usually have an x-axis that doesn't have a natural sorting order. However, sorting by the height of the bars is a valuable way to present data and insight.
 
-![bar chart](../static/sorted_bars.png)
+{% tabs sorted_bars %}
 
+{% tab sorted_bars Image %}
+![Bar Chart](../static/sorted_bars.png)
+{% endtab %}
+
+{% tab sorted_bars Code %}
 ```python
 def sorted_plt_bars(df):
     # we need the axis and a larger figure size to make this plot look nice
@@ -184,7 +193,7 @@ def sorted_plt_bars(df):
     # remove any background grid that might be present (generally only needed if seaborn was used previously)
     ax.grid(False)
 
-    # sort the dataframe. Here we assign back to df. Altneratively, we could have done `inplace=True`.
+    # sort the dataframe. Here we assign back to df. Alternatively, we could have done `inplace=True`.
     df = df.sort_values(by='a_value', ascending=False)
 
     # no color parameter provided means that we default to a single blue color.
@@ -201,31 +210,41 @@ def sorted_plt_bars(df):
     plt.ylabel('A Value')
     plt.xlabel('')
 ```
+{% endtab %}
 
-### Data
-
+{% tab sorted_bars Data %}
 This is the first 11 rows of the **original** data (which was unsorted).  
+![Bar Chart](../static/sorted_data.jpg)
+{% endtab %}
 
-![bar chart](../static/sorted_data.jpg)
-
-
-### Comments
-
+{% tab sorted_bars Comments %}
 * When there are a good number of bars, the viewer will benefit if the bars are sorted.   
 * In this chart, text is added inside the bar to provide the bar's value. Without a grid background (which can be added when using seaborn), it can be hard to know what the precise value is. There are multiple ways to add text. In this example, we use the `ax.bar_label` API. But, one can also use `plt.text` or `ax.annotate` methods.  
-* The x-axis label is purposely set to an empty string because the viewer can clearly the x-axis values and understand their meaning.  
+* The x-axis label is purposely set to an empty string because the viewer can clearly see the x-axis values and understand their meaning.  
 * The colors of the bars can be customized using the `color` named parameter. You can set all the bars to one identical color, or pass in a sequence of values such as `df['color']` (if you create a meaningful and correct color column in the dataframe).  
+{% endtab %}
+
+{% endtabs %}
 
 ## Adjusted Y-Label
 
 Bar charts usually have the y-axis start at 0. You may want to adjust the y-label to accentuate the differences, or simply to provide different insight. There are 3 different plots here. First, we use `bottom` on the `plt.bar` API to adjust the y-axis. To get the bars to draw at the correct height, we must plot an adjusted column. In this plot we also explore how to arbitrarily label the y-axis. Second, we use the `plt.ylim` API and adjust the list of Rectangles used to place the labels in the center of the bars. We also choose to plot on the `Series` object, simply to demonstrate that it can be done. Third, we label on the `'edge'` which simplifies the code a bit. We also play around with different colors. Read the comments in the code to get more insight.
 
-![bar chart](../static/bars_bottom.png)
+{% tabs adjusted_y_label %}
 
-![bar chart](../static/bars_patches.png)
+{% tab adjusted_y_label Image 1 %}
+![Bar Chart](../static/bars_bottom.png)
+{% endtab %}
 
-![bar chart](../static/bars_edge.png)
+{% tab adjusted_y_label Image 2 %}
+![Bar Chart](../static/bars_patches.png)
+{% endtab %}
 
+{% tab adjusted_y_label Image 3 %}
+![Bar Chart](../static/bars_edge.png)
+{% endtab %}
+
+{% tab adjusted_y_label Code 1 %}
 ```python
 def sorted_plt_bars(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -256,10 +275,12 @@ def sorted_plt_bars(df):
     
     # Let's customize the y-labels using yticks.
     # The first argument is a list of the positions using the values found in the data.
-    # The second argument is a list of the lables to use.
+    # The second argument is a list of the labels to use.
     plt.yticks([y for y in range(40, 100, 10)], ['one', 'two', 'three', 'four', 'five', 'six'])
 ```
+{% endtab %}
 
+{% tab adjusted_y_label Code 2 %}
 ```python
 def sorted_plt_bars(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -279,15 +300,15 @@ def sorted_plt_bars(df):
     
     # adjust the Rectangles so the label prints in the middle
     bottom = 40    
-    bars.patches = [plt.Rectangle(r.get_xy(), r.get_width(), r.get_height()+bottom) for r in bars.patches]
+    bars.patches = [plt.Rectangle(r.get_xy(), r.get_width(), r.get_height() + bottom) for r in bars.patches]
 
-    # Show grid lines on both axis, blue, with small dotted linestyle.
+    # Show grid lines on both axes, blue, with small dotted linestyle.
     # And, show the grid lines underneath the bars.
     ax.grid(True, which='major', axis='both', color='b', ls=':')
     ax.set_axisbelow(True)
 
     # use plt.ylim to set the min/max y-values in the plot
-    plt.ylim(bottom=bottom, top=100)
+    plt.ylim(custom=bottom, top=100)
 
     # label the bars with the original values from the DataFrame
     ax.bar_label(bars, labels=df['a_value'], label_type='center')
@@ -297,7 +318,9 @@ def sorted_plt_bars(df):
     plt.ylabel('A Value')
     plt.xlabel('')
 ```
+{% endtab %}
 
+{% tab adjusted_y_label Code 3 %}
 ```python
 def sorted_plt_bars(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -318,7 +341,7 @@ def sorted_plt_bars(df):
     ax.set_axisbelow(True)
 
     # use plt.ylim to set the min/max y-values in the plot
-    plt.ylim(bottom=40, top=110)
+    plt.ylim(custom=40, top=110)
 
     # use label_type='edge' to show the label on the top of the bars 
     ax.bar_label(bars, labels=df['a_value'], label_type='edge')
@@ -328,16 +351,21 @@ def sorted_plt_bars(df):
     plt.ylabel('A Value')
     plt.xlabel('')
 ```
+{% endtab %}
+
+{% endtabs %}
 
 ## Stacked Bars
 
-Sometimes the addition of multiple values has meaning and you'll want to stack one bar on top of another. This allows you to see
-multiples values and their sum total. We still sort the bars by a specific value to provide some added insight.   
+Sometimes the addition of multiple values has meaning and you'll want to stack one bar on top of another. This allows you to see multiples values and their sum total. We still sort the bars by a specific value to provide some added insight.
 
-![bar chart](../static/stacked_bars.png)
+{% tabs stacked_bars %}
 
-### Code
+{% tab stacked_bars Image %}
+![Bar Chart](../static/stacked_bars.png)
+{% endtab %}
 
+{% tab stacked_bars Code %}
 ```python
 def stacked_df_plot_kind(df):
     # create a figure of a good size
@@ -349,7 +377,7 @@ def stacked_df_plot_kind(df):
     # x-axis of a bar chart is taken from the index, so set the index to the state
     df = df.set_index('state') 
 
-    # tell matplotl;ib to plot a bar chart where the bars are stacked
+    # tell matplotlib to plot a bar chart where the bars are stacked
     df.plot(kind='bar', stacked=True, ax=ax)
 
     # set labels to make it all readable
@@ -358,29 +386,38 @@ def stacked_df_plot_kind(df):
     plt.xlabel('')
     plt.ylabel('Both Values')
 ```
+{% endtab %}
 
-### Data
-
+{% tab stacked_bars Data %}
 This is the first 11 rows of the **original** data (which was unsorted).  
+![Bar Chart](../static/sorted_data.jpg)
+{% endtab %}
 
-![bar chart](../static/sorted_data.jpg)
-
-### Comments
+{% tab stacked_bars Comments %}
 * We could have chosen to sort by the sum total of the values charted. It all depends on what you're trying to illustrate.  
 * If the DataFrame has more columns, each column's value will be stacked into this bar chart. Here, we have only two columns that are not the index value.  
+{% endtab %}
+
+{% endtabs %}
 
 ## Side-by-side Bars
 
-Sometimes you want to compare two values side-by-side across a set of categories. We demonstrate **TWO** ways to do this.  
-1) `plt` offers a way using `stacked=False` where there are many columns with values to plot. 
+Sometimes you want to compare two values side-by-side across a set of categories. We demonstrate **TWO** ways to do this:  
+1) `plt` offers a way using `stacked=False` where there are many columns with values to plot.  
 2) `seaborn` allows us to plot using `hue='column'` when the data is structured differently.  
 
-Be sure to look at the data structure in each of these two examples.  
+Be sure to look at the data structure in each of these two examples.
 
-Note that this image is very, very similar to the `Seaborn` plot generated with the code used below. The differences are: The legend does not have a title, the color shades are slightly different, the legend is fully opaque, there are  vertical grid lines. All of these are very subtle.   
+### Using `plt`
 
-![bar chart](../static/plt_side-by-side-bars.png)
+{% tabs side_by_side_plt %}
 
+{% tab side_by_side_plt Image %}
+Note that this image is very, very similar to the `Seaborn` plot generated with the code used below. The differences are: The legend does not have a title, the color shades are slightly different, the legend is fully opaque, there are vertical grid lines. All of these are very subtle.   
+![Bar Chart](../static/plt_side-by-side-bars.png)
+{% endtab %}
+
+{% tab side_by_side_plt Code %}
 ```python
 def plot_side_by_side(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -404,32 +441,39 @@ def plot_side_by_side(df):
     plt.xlabel('')
     plt.legend(['A Value', 'B Value'])
 ```
+{% endtab %}
 
-### Data
-
+{% tab side_by_side_plt Data %}
 This is the first 11 rows of the **original** data (which was unsorted).  
+![Bar Chart](../static/sorted_data.jpg)
+{% endtab %}
 
-![bar chart](../static/sorted_data.jpg)
-
-### Comments
-
-* More horizonal space is needed for side-by-side bar charts. You shouldn't show too many bars in one plot; we filter this chart down to just 10 states.  
+{% tab side_by_side_plt Comments %}
+* More horizontal space is needed for side-by-side bar charts. You shouldn't show too many bars in one plot; we filter this chart down to just 10 states.  
 * The width of each bar can give the chart a different feel. Here we increase the width a bit.  
 * The color of the bars can be set manually via the named parameter `color`. But, this isn't what we want when we have side-by-side bars. Instead, we would want to use `colormap` which has a lot of [different options](https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html), including gradients. Ultimately, we used the default colors.   
 * I found it interesting that my first attempt to limit the data to 10 rows worked without having used `reset_index`. I'm not sure how it worked originally, but I'm pretty sure that always using reset_index() will work. Also, there is an `inplace` named argument that we explicitly needed to have set to `False` (or not set to True). This assures that the reset_index() returns a new dataframe.  
+{% endtab %}
 
-We can also use `Seaborn` to do this plot, but the data needs to be organized differently. We do a little extra
-work to get the data to look right, but sometimes our data starts off looking this way. Furthermore, it
-is really good to know about the method `pd.melt`. The resulting bar plot is virtually identical.  
+{% endtabs %}
 
+### Using `seaborn`
+
+We can also use `Seaborn` to do this plot, but the data needs to be organized differently. We do a little extra work to get the data to look right, but sometimes our data starts off looking this way. Furthermore, it is really good to know about the method `pd.melt`. The resulting bar plot is virtually identical.
+
+{% tabs side_by_side_sns %}
+
+{% tab side_by_side_sns Image %}
 Note that this image is very, very similar to the plot generated with `plt` above.    
-![bar chart](../static/side-by-side-bars.png)
+![Bar Chart](../static/side-by-side-bars.png)
+{% endtab %}
 
-### Data
+{% tab side_by_side_sns Data %}
 This is the data after we `melt` the DataFrame to its new structure. The original data structure is shown in the `plt` example above.   
+![Bar Chart](../static/bar_sns_melt_data.jpg)
+{% endtab %}
 
-![bar chart](../static/bar_sns_melt_data.jpg)
-
+{% tab side_by_side_sns Code %}
 ```python
 def sns_side_by_side(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -456,20 +500,28 @@ def sns_side_by_side(df):
     plt.xlabel('')
     plt.legend(handles=handles, title='Values', labels=['A Value', 'B Value'])
 ```
+{% endtab %}
 
-### Comments
-
-* Often times, data will be organized as shown in the Data section below. It then becomes easy to use `Seaborn` to plot, leveraging the named argument, `hue`.   
+{% tab side_by_side_sns Comments %}
+* Often times, data will be organized as shown in the Data tab here. It then becomes easy to use `Seaborn` to plot, leveraging the named argument, `hue`.   
 * The `melt` API is interesting. One could do all of this work by hand, but using the [melt function](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html) is much easier to do.  
 * I found it interesting that my first attempt to limit the data to 10 rows worked without having used `reset_index`. I'm not sure how it worked originally, but I'm pretty sure that always using reset_index() will work. Also, there is an `inplace` named argument that we explicitly needed to have set to `False` (or not set to True). This assures that the reset_index() returns a new dataframe.  
 * In this example, `plt.legend(['A Value', 'B Value'])` did not show the correct colors of the bars. To fix this, I needed to get the plot's `handles` from the `axis` object. Furthermore, I gave the legend a title.
+{% endtab %}
+
+{% endtabs %}
 
 ## Horizontal Bar Chart
 
-If we want to plot our bars horizontally, we can leverage the `barh` method.   
+If we want to plot our bars horizontally, we can leverage the `barh` method.
 
-![bar chart](../static/horiz_bars.png)
+{% tabs horizontal_bars %}
 
+{% tab horizontal_bars Image %}
+![Bar Chart](../static/horiz_bars.png)
+{% endtab %}
+
+{% tab horizontal_bars Code %}
 ```python
 def df_horiz_plot(df):
     fig, ax = plt.subplots(1, figsize=(8, 10))
@@ -486,27 +538,35 @@ def df_horiz_plot(df):
     plt.ylabel('State')
     plt.legend(['A Value', 'B Value'])
 ```
+{% endtab %}
 
-### Data
-
+{% tab horizontal_bars Data %}
 This is the first 11 rows of the **original** data (which was unsorted).  
+![Bar Chart](../static/sorted_data.jpg)
+{% endtab %}
 
-![bar chart](../static/sorted_data.jpg)
+{% tab horizontal_bars Comments %}
+* DataFrame has a plot object. On this [plot object](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html) we can call the following methods:  
+  * area  
+  * bar  
+  * barh  
+  * box  
+  * ... and a bunch more ...
+{% endtab %}
 
-### Comments
-* DataFrame has a plot object. On this <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html" target="_blank">plot object</a> we can call the following methods:  
-    * area  
-    * bar  
-    * barh  
-    * box  
-    * ... and a bunch more ...
+{% endtabs %}
 
 ## Histogram
 
-Sometimes you want to know the number of times something occurs. A Histogram will allow you to do a bar plot that represents counts.  
+Sometimes you want to know the number of times something occurs. A Histogram will allow you to do a bar plot that represents counts.
 
-![bar chart](../static/distance_hist.jpg)
+{% tabs histogram %}
 
+{% tab histogram Image %}
+![Bar Chart](../static/distance_hist.jpg)
+{% endtab %}
+
+{% tab histogram Code %}
 ```python
 def hist_chart(df):
     plt.hist(df['distance'], bins=25)
@@ -514,24 +574,33 @@ def hist_chart(df):
     plt.ylabel('Count')
     plt.title('Count of Throwers at Each Distance')
 ```
+{% endtab %}
 
-### Data
+{% tab histogram Data %}
 This data is fake data generated for this coding example.  
-![bar chart](../static/distance_data.jpg)
+![Bar Chart](../static/distance_data.jpg)
+{% endtab %}
 
-### Comments
-* `bins` is a numberical value that sets how many bars there will be. The idea is that you 'toss the items into bins' and then plot the count of items in each bin.  
+{% tab histogram Comments %}
+* `bins` is a numerical value that sets how many bars there will be. The idea is that you 'toss the items into bins' and then plot the count of items in each bin.  
 * In this plot, we've initialized `seaborn` so there is a white grid in the background established with `sns.set_style('whitegrid')`.     
+{% endtab %}
+
+{% endtabs %}
 
 ## Seaborn Colorful Bar Chart
 
-Seaborn has a wide variety of fancy charts and offers easy ways to view insightful statistics. 
-When it comes to bar charts it doesn't add that much. Here we show two things:  
-1. Fancy colors and a different background   
-2. Statistical analysis when there are many values per category on the x-axis  
+Seaborn has a wide variety of fancy charts and offers easy ways to view insightful statistics. When it comes to bar charts it doesn't add that much. Here we show two things:  
+1. Fancy colors and a different background  
+2. Statistical analysis when there are many values per category on the x-axis
 
-![bar chart](../static/seaborn_bars.png)
+{% tabs seaborn_colorful %}
 
+{% tab seaborn_colorful Image %}
+![Bar Chart](../static/seaborn_bars.png)
+{% endtab %}
+
+{% tab seaborn_colorful Code %}
 ```python
 def sorted_bars(df):
     fig, ax = plt.subplots(1, figsize=(12, 5))
@@ -547,23 +616,32 @@ def sorted_bars(df):
     plt.ylabel('A Value')
     plt.xlabel('')
 ```
+{% endtab %}
 
-### Data
+{% tab seaborn_colorful Data %}
 This is the first 11 rows of the **original** data (which was unsorted).  
+![Bar Chart](../static/sorted_data.jpg)
+{% endtab %}
 
-![bar chart](../static/sorted_data.jpg)
-
-### Comments
+{% tab seaborn_colorful Comments %}
 * The background is a dark grid, as set by `sns.set_style`.  
-* The color of each bar is set using a `colormap` which has a lot of different options, including gradients. We can set colormap='xxx' to a variety of values as described in [colormaps reference](https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html).  
+* The color of each bar is set using a `colormap` which has a lot of different options, including gradients. We can set `colormap='xxx'` to a variety of values as described in [colormaps reference](https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html).  
 * Note that there is only one data value for every State.  
+{% endtab %}
+
+{% endtabs %}
 
 ## Seaborn Statistical Bar Chart
 
-There can be many values that fall in a specific category. In this example, we analyze how far people can throw a ball. We have 400 samples of people's distance and gender and we show a simple bar chart showing the difference.  
+There can be many values that fall in a specific category. In this example, we analyze how far people can throw a ball. We have 400 samples of people's distance and gender and we show a simple bar chart showing the difference.
 
-![bar chart](../static/sns_bar_stats.jpg)
+{% tabs seaborn_statistical %}
 
+{% tab seaborn_statistical Image %}
+![Bar Chart](../static/sns_bar_stats.jpg)
+{% endtab %}
+
+{% tab seaborn_statistical Code %}
 ```python
 def sns_bar_stats(df):
     # display the line with the standard deviation instead of %95 confidence.
@@ -574,15 +652,20 @@ def sns_bar_stats(df):
     plt.xlabel('')
     plt.title('Avg with St Deviation of Distance by Gender')
 ```
+{% endtab %}
 
-### Data
+{% tab seaborn_statistical Data %}
 This data is fake data generated for this coding example.  
-![bar chart](../static/distance_data.jpg)
+![Bar Chart](../static/distance_data.jpg)
+{% endtab %}
 
-### Comments
-* The 'line' coming out of the bar represents some statistical information. In this chart, we have it represent the Standard Deviation to help is understand the variance in the data. 
+{% tab seaborn_statistical Comments %}
+* The 'line' coming out of the bar represents some statistical information. In this chart, we have it represent the Standard Deviation to help us understand the variance in the data. 
 * Note: in more current versions of Seaborn, 'ci' is deprecated in favor of 'errorbar'. There are three options for `ci`:  
-    * None: don't draw an errorbar at all  
-    * 95: (Some number 0-100). This is the percent confidence you want to have in the average. Small numbers result in short lines (or no lines). Large numbers result in larger lines. In other words, if you want a lot of confidence, you need a bigger range.  
-    * 'sd': Shows the Standard Deviation instead of the mean.  
+  * None: don't draw an errorbar at all  
+  * 95: (Some number 0-100). This is the percent confidence you want to have in the average. Small numbers result in short lines (or no lines). Large numbers result in larger lines. In other words, if you want a lot of confidence, you need a bigger range.  
+  * 'sd': Shows the Standard Deviation instead of the mean.  
 * By default, the line would represent the confidence interval of the average in the data. This may sound strange because we can calculate the average of the data exactly. But, in the world of statistics, we acknowledge that our data is just a sample of the entire population and may not accurately reflect reality. The larger our sample, the more confidence we can have in the data. Seaborn uses something called [bootstrapping](https://www.thoughtco.com/what-is-bootstrapping-in-statistics-3126172).   
+{% endtab %}
+
+{% endtabs %}

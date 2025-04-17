@@ -191,11 +191,11 @@ Lastly, consider what classes you will create, their roles & responsibilities, h
 
 You should consider at a minimum to create the following diagrams:
 
-**Class Diagram**: This diagram illustrates the static structure of a system by showing its classes, attributes, operations, and the relationships among objects. It provides a clear blueprint of the system's architecture, essential for understanding how different components interact. 
+**Class Diagram**: This diagram illustrates the static structure of a system by showing its classes, attributes, operations, and the relationships among objects. It provides a clear blueprint of the system's architecture, essential for understanding how different components interact. There is an excellent reference and example on how to create class diagrams [here](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/).
 
 **Sequence Diagram**: Depicting the sequence of messages exchanged among objects, sequence diagrams detail how operations are carried out, including the order of interactions. They are instrumental in modeling the dynamic behavior of a system, especially for complex processes. 
 
-**Use Case Diagram**: This diagram captures the functional requirements of a system by illustrating the interactions between users (actors) and the system itself. It helps in identifying and organizing system requirements, ensuring that all user interactions are considered during development. You may decide on a different diagram to this one if your application has minimal user interaction.
+**Flow Chart Diagram**: A flowchart diagram in a detailed design document shows the step-by-step logic of a process or method. It uses shapes like diamonds (decisions) and rectangles (actions) to represent control flow. Flowcharts are ideal for illustrating branching paths, loops, or procedural algorithms. They help readers visualize how specific game features or functions work internally. Use them when the logic is too complex for plain text or pseudocode alone.
 
 #### Class Roles & Responsibilities
 

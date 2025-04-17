@@ -32,6 +32,9 @@ callouts:
 
 enable_copy_code_button: true
 
+plugins:
+  - jekyll-tabs
+
 include:
   - idp/static
 
@@ -47,5 +50,11 @@ defaults:
   - scope:
       path: "idp/visualizations/"
       type: "pages"
+      nav_order: 1
     values:
       parent: Visualizations
+  - scope:
+      path: "idp/machine-learning/"
+      type: "pages"
+    values:
+      parent: Machine Learning

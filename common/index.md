@@ -41,3 +41,4 @@ We welcome all students to join our computer science community, whether you're a
 {: .notice }
 Please report broken links to your teacher through the github issues link [here](https://github.com/NCHS-CS/nchs-cs.github.io/issues). Or even better; submit a [pull request](https://github.com/NCHS-CS/nchs-cs.github.io/pulls) for the actual fix to github for the website and live in git history infamy!!
 
+---

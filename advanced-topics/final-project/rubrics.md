@@ -43,9 +43,9 @@ The approval may be graded after the due date and will not be late. However, you
 
 | **Category**               | **Criteria**                                                                         | **Points** |
 |----------------------------|--------------------------------------------------------------------------------------|------------|
-| **Detailed Design**    | - All weekly goals have a subset of at least 4 tasks that will be individually assigned and estimated (assignments not required)<br>- All tasks have reasonable initial estimates<br>- Initial estimates with multiplier fits within a reasonable range of a weeks work in class.<br>- Actual times can be recorded to calculate the teams velocity each week to adjust future work estimates. | 15      |
+| **Detailed Design**    | - Class Design & Data Structures are well-structured with appropriate attributes, methods with key parameters and return types.<br>- Explains how classes communicate, share data, and interact within the system.<br>- Describes important algorithms with step-by-step logic or pseudocode.<br>- User Interface & External Libraries (if applicable): Outlines key UI components, interactions, and any third-party libraries used with justification.<br>- Satisfies requirements in the Detailed Design Template (design diagrams, user stories etc) | 15      |
 | **User Stories**    | - Each tasks on the schedule has at least 1 user story referenced writted per the definition provided. | 5   |
-| **Testing Strategy** | - JUnit (or some testing infrastructure) is used to test methods.<br>- Some code is written that performs testing of important pieces of functionality beyond running the program normally. | 3 |
+| **Testing Strategy** | - Provided a description of the different test strategies you will use (e.g. Manual, UI testing, Automated/Junit testing). You convinced me that your program will behave as you expect by having sufficient details on the testing. For manual testing you provided some detailed steps on the tests you will run through. | 3 |
 | **Algorithms** | - Clearly documents key algorithms (If your project has approval for no algorithms, your detailed design will be weighted with these points) | 2 |
 
 # Project Completion (60)

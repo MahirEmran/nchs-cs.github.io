@@ -4,28 +4,30 @@ title: Geospatial Plots
 ---
 
 # Geospatial Plots
-{% include toc.md %}
 
 Geospatial plots are great at:  
-
 1. Showing how an **area** is impacted relative to other **areas.**  
 2. Revealing which area is impacted.  
 3. Illustrating a pattern in the location of something.
 
-Geospatial plots are NOT good at:  
+Geospatial plots are NOT good at:
 1. Showing **how** one value correlates to another. (Use a line plot for this)  
 2. Emphasizing the amount of difference between one area and another.  
 
 ## Contiguous States Only
-
 Let's start off by showing the benefits of showing only the contiguous United States. 
 Imagine that we are trying to show which states have the most electoral college votes
 and perhaps we want to emphasize that California has the most by a long shot.
 
+{% tabs contiguous_states %}
+
+{% tab contiguous_states Image %}
 One the left, we see what many students show--the full 50 states.  
 One the right, is a much improved image showing only the 48 contiguous states.  
 ![election image](../static/geo_demo_clip.jpg)
+{% endtab %}
 
+{% tab contiguous_states Code %}
 ```python
 fig, (ax1, ax2) = plt.subplots(1,2, figsize=(15,5))
 
@@ -40,39 +42,40 @@ ax2.axis('off') # remove the box and the x,y ticks
 ax2.set_xlim(-130, -65)
 ax2.set_ylim(24, 50)
 ```
+{% endtab %}
 
-### Data
+{% tab contiguous_states Data %}
 This data is a merge of two different data sources: electoral_college.csv and a ShapeFile of the United States.  You'll note that in the code we were able to read column values `"707,558"` (a string with a literal comma as the thousands separator), by using the named parameter `thousands` in the `read_csv` call. Handy!! We also eliminated a duplicate column using `drop`.     
 ![election data](../static/geo_elect_data.jpg)
-
 ```python
 electoral = pd.read_csv('electoral_college.csv', thousands=',')
 gdf = us_states.merge(electoral, left_on='NAME', right_on='State', how='left')
 gdf = gdf.drop(columns='State') # this is a duplicate of 'NAME'
 ```
+{% endtab %}
 
-### Comments
-
+{% tab contiguous_states Comments %}
 In this example, we have two geospatial in one figure where there are just three differences.  
-
 1. The box and ticks are hidden  
-2. We clip off Alaska & Hawaii (and other territories)
+2. We clip off Alaska & Hawaii  
 3. We show a legend  
 
 By hiding Alaska and Hawaii, we can bring a much greater focus on the states. Providing a legend is very helpful. And, eliminating the box with longitude and latitude ticks removes an unnecessary distraction since we really don't care about the lat/long.  
 
 In the chart on the right, we can easily see that California is large and brilliant yellow which emphasizes its impact. 
+There are two ways to hide these states. One way is to eliminate them from the GeoDataFrame:  
+`gdf = gdf[(gdf['NAME'] != 'Alaska') & (gdf['NAME'] != 'Hawaii')]`  
+Another way is to set some limits on the x & y axes: `ax2.set_xlim(-130, -65)`
+{% endtab %}
 
-You can set some limits on the x & y axes to eliminate the non-contiguous US states: `ax2.set_xlim(-130, -65)`
+{% endtabs %}
 
 ## Inset Alaska & Hawaii
+Eliminating two states from the drawing isn't so great. We'd like to show Alaska and Hawaii like other maps do using an `inset`. This can be done, but it does get complicated rather quickly. The inset is a separate plot with separate arguments. When legends are shown, the size of the figure changes and the placement of the inset changes. I provide this code because it is educational to see and play with, but I recommend the method below this.  
 
-Eliminating areas from the drawing isn't so great. We'd like to show Alaska and Hawaii like other maps do using an `inset`. This can be done, but it does get complicated rather quickly. The inset is a separate plot with separate arguments. When legends are shown, the size of the figure changes and the placement of the inset changes. I provide this code because it is educational to see and play with, but I recommend the method below this.  
-
-### Inset Image and Complicated Code
-
+```{admonition} Inset Image and Complicated Code
+:class: dropdown
 ![election image](../static/geo_inset_no_borders.jpg)
-
 ```python
 def draw_us_inset(gdf, **args):
     # Create a new figure and axes for the main plot
@@ -118,14 +121,17 @@ draw_us_inset(gdf, column='Electoral Votes')
 ```
 
 ## Modified Geometry
-
 It becomes much easier to deal with plotting the full United States if the GeoDataFrame's geometry is modified to put Alaska and Hawaii in the "right" spot. The only drawbacks are:  
-
 * If you do geospatial `sjoin`s, then it'll all get messed up geographically.  
 * If you want to illustrate something on the Pacific Ocean, there are states in the way!  
 
-![election image](../static/geo_elect.jpg)
+{% tabs modified_geometry %}
 
+{% tab modified_geometry Image %}
+![election image](../static/geo_elect.jpg)
+{% endtab %}
+
+{% tab modified_geometry Code %}
 ```python
 from shapely.affinity import translate
 from shapely.affinity import scale
@@ -170,34 +176,37 @@ def plot_votes(gdf):
 modify_geometry(gdf)
 plot_votes(gdf)
 ```
+{% endtab %}
 
-### Data
-
-This data is a merge of two different data sources: electoral_college.csv and a ShapeFile of the United States.  You'll note that in the code we were able to read column values `"707,558"` (a string with a literal comma as the thousands separator), by using the named parameter `thousands` in the `read_csv` call. Handy!! We also eliminated a duplicate column using `drop`.
-
+{% tab modified_geometry Data %}
+This data is a merge of two different data sources: electoral_college.csv and a ShapeFile of the United States.  You'll note that in the code we were able to read column values `"707,558"` (a string with a literal comma as the thousands separator), by using the named parameter `thousands` in the `read_csv` call. Handy!! We also eliminated a duplicate column using `drop`.     
 ![election data](../static/geo_elect_data.jpg)
-
 ```python
 electoral = pd.read_csv('electoral_college.csv', thousands=',')
 gdf = us_states.merge(electoral, left_on='NAME', right_on='State', how='left')
 gdf = gdf.drop(columns='State') # this is a duplicate of 'NAME'
 ```
+{% endtab %}
 
-### Comments
-
+{% tab modified_geometry Comments %}
 When the geometry of the GeoDataFrame is modified, the plotting code is pretty simple and allows for further customizations without crazy code. A few points worthy of calling out:  
 * We use a `walrus` operator (`:=`) to assign a sub-expression to a variable in the middle of a larger expression. This allows us to reuse the value again later on in the code. It would have been just as easy to write it with two lines of code instead of one, but... _Bragging Rights!_  
 * When modifying the GeoDataFrame, we used the <a href='https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.at.html' target='_blank'>`at` method</a> instead of `loc`. Using loc results in an error: "ValueError: Must have equal len keys and value when setting with an iterable".  
+{% endtab %}
+
+{% endtabs %}
 
 ## Annotated with Table Inset
-
 The problem with the plot above is that it is very hard to see if there is any difference between Oregon and Nevada; the colors are just too close! To fix that we will annotate each state with the count of the votes printed onto the state's location. 
 
+{% tabs annotated_table_inset %}
 
+{% tab annotated_table_inset Image %}
 ![election image](../static/geo_elect_annotated.jpg)
+{% endtab %}
 
+{% tab annotated_table_inset Code %}
 ```python
-
 def annotate_states(gdf, ax, value_col, not_states=None, name_col='NAME'):
     # annotate the states in the list, states, with values in col_name
     # Filter first so that we iterate through the rows that have the state name we want
@@ -250,39 +259,45 @@ def plot_annotated_votes(gdf):
 modify_geometry(gdf)
 plot_annotated_votes(gdf)
 ```
+{% endtab %}
 
-### Data
+{% tab annotated_table_inset Data %}
 This data is a merge of two different data sources: electoral_college.csv and a ShapeFile of the United States.  You'll note that in the code we were able to read column values `"707,558"` (a string with a literal comma as the thousands separator), by using the named parameter `thousands` in the `read_csv` call. Handy!! We also eliminated a duplicate column using `drop`.     
-
 ![election data](../static/geo_elect_data.jpg)
-
 ```python
 electoral = pd.read_csv('electoral_college.csv', thousands=',')
 gdf = us_states.merge(electoral, left_on='NAME', right_on='State', how='left')
 gdf = gdf.drop(columns='State') # this is a duplicate of 'NAME'
 ```
+{% endtab %}
 
-### Comments
+{% tab annotated_table_inset Comments %}
 We moved the legend to be horizontal, not because it was necessary, but because we can. This was accomplished by using the `legend_kwds` argument in the plot method. There are other ways to do this (as always).  
 
 There are several issues that we address in this plotting solution: 
-
-| Problem | Fix |  
+|Problem|Fix|  
 |-------|---|  
 |The black text doesn't show up well with the default colormap.|Change the `colormap` to 'cool'.|   
 |The smaller states don't have room for the text. It all gets printed on top of each other and is unreadable.|Avoid annotating values on the states with a small geometry. We just manually do this, however, we could have used the 'CENSUSAREA' column to help us out with that. Doing it explicitly is good enough for us.|  
 |The smaller states' values get lost when not shown!|Create an inset table that displays the values|  
 |The dataframe of values is floating point|Use the apply method and a lambda to convert all the values to integer. There is probably another way... there always is!|
+{% endtab %}
+
+{% endtabs %}
 
 ## Finding Obvious Correlations
-
 Is there a correlation between population and electoral votes? Does the size of a state in square miles correlate to the number of electoral votes? Geospatial provides only minimal insight; a scatter plot is better.  
 
+{% tabs finding_correlations %}
+
+{% tab finding_correlations Image %}
 One the top-left, you'll see a plot representing Electoral Votes by state. Were we to plot a geospatial plot of Population, we'd see something virtually identical and therefore a correlation would be seen.  
 One the top-right, you'll see a plot representing each state's size in square miles.
    
 ![election image](../static/geo_correlation.jpg)
+{% endtab %}
 
+{% tab finding_correlations Code %}
 ```python
 def plot_correlation(gdf):
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(10,5))
@@ -304,32 +319,38 @@ def plot_correlation(gdf):
     for ax in (ax3, ax4):
         ax.grid(linestyle="--", linewidth=0.5, color='.25', zorder=-10)
 ```
+{% endtab %}
 
-### Data
-
+{% tab finding_correlations Data %}
 Same data as above.     
 ![election data](../static/geo_elect_data.jpg)
+{% endtab %}
 
-### Comments
-
+{% tab finding_correlations Comments %}
 Were we to plot a geospatial plot of Population, we'd see something virtually identical to the top-left and, therefore, a correlation would be seen. But, it would take **two** geospatial plots to show the correlation. And, in this specific case, the correlation is **extremely strong**; Electoral Votes is, in fact, calculated by a state's population. In this example, we omitted the second geospatial plot in favor of a scatter plot.   
 
 One the top-right, you'll see a plot representing each state's size in square miles. Is there a correlation of a state's size to the count of Electoral Votes? It's a bit hard to determine from the geospatial plot. However, in combination with the scatter plots, one can be more confident in their assessment.  
 
 **In summary**: we show 4 different plots in a single figure that in combination provide insight. The geospatial plots provide some understanding about where the Electoral Votes go geographically. Showing it side-by-side to the geospatial plot on Square Miles gives you an idea that there is _not an obvious_ correlation between votes and square miles. However, when we add the scatter plots, the correlations become a lot clearer. It is obvious that there is strong and direct relationship between population and votes, while there is very little, if any, correlation of square miles to votes. 
 
-### Using Statistics
-
+```{admonition} Using Statistics
+:class: dropdown
 In other sections, you can see how using Python libraries you can identify statistical information (e.g. Coefficient of Determination, Mean Square Error) to provide objective measurements of the correlation. In our example here, the Coefficient of Determination ($R^2$) for Votes vs Area is only 0.019 (which is extremely small) while for Votes vs Population the value is 0.991 (which is extremely high).  
+```
+{% endtab %}
+
+{% endtabs %}
 
 ## Correlations and Coefficient of Determination
+In this example, we create three values (A, B, C) for each state. There is a strong correlation in the data, but the geospatial plots makes it hard to see **how** they relate. See if you can spot the correlations in the geospatial plots? Notice how the plots for **'Value A'** and **'Value C'** appear to be nearly identical, yet the details of the relationship is somewhat hidden because of the scale on the colormap. Then, the scatter & line plots make it all very apparent. Read more in the **Plot Comments** and **Code Comments** tabs.
 
-In this example, we create three values (A, B, C) for each state. There is a strong correlation in the data, but the geospatial plots makes it hard to see **how** they relate. See if you can spot the correlations in the geospatial plots? Notice how the plots for **'Value A'** and **'Value C'** appear to be nearly identical, yet the details of the relationship is somewhat hidden because of the scale on the colormap. Then, the scatter & line plots make it all very apparent. Read more in the **Plot Comments** and **Code Comments** sections.
+{% tabs correlations_coefficient %}
 
-
-   
+{% tab correlations_coefficient Image %}
 ![Geospacial & Linear plots](../static/geo_line_correlations.jpg)
+{% endtab %}
 
+{% tab correlations_coefficient Code %}
 ```python
 from scipy import stats
 
@@ -342,7 +363,7 @@ def plot_correlations(gdf):
     fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8)) = plt.subplots(4, 2, figsize=(12,15))
 
     # the linear plots are virtually on top of each other. Spread them out
-    # horizontally even though this makes the geospatial plots seem too var apart.
+    # horizontally even though this makes the geospatial plots seem too far apart.
     plt.subplots_adjust(hspace=0.3)
 
     max_value = max(gdf['A'].max(), gdf['B'].max(), gdf['C'].max())
@@ -386,13 +407,14 @@ def plot_correlations(gdf):
     ax7.set_title('Value C vs Value A')
     ax8.set_title('B & C vs Value A')
 ```
+{% endtab %}
 
-### Data
+{% tab correlations_coefficient Data %}
 The values for A, B, and C are contrived. This is only the first 12 rows of the full set.      
 ![election data](../static/geo_abc_data.jpg)
+{% endtab %}
 
-### Plot Comments
-
+{% tab correlations_coefficient Plot Comments %}
 There is a lot going on here. First, let's discuss the geospatial plots. There appears to be some correlation
 in all the geospatial plots, but it is hard to figure out. One might think that **Value A** and **Value C** are identical.
 However, when we plot A, B, C all on the same color scale, you can see that **Value A (on B scale)** is quite different
@@ -403,15 +425,15 @@ Now, let's look at the scatter and line plots. The dots alone shows a clear line
 add the line, the correlation is bolstered.  
 
 But, how strong is the correlation? To determine this, we displayed the **Coefficient of Determination** value
-on the plot directly. The larger the value (closer to 1.0), the strong the correlation. The $R^2$ value basically
+on the plot directly. The larger the value (closer to 1.0), the stronger the correlation. The $R^2$ value basically
 tells us what percentage of the value on the y-axis is due to the value on the x-axis. We see that the values of
 $R^2$ are 0.736 and 0.948 respectively. These are quite high.   
 
 Lastly, the best plot is the last one which combines all the information into a single plot. If you're trying
 to show correlation with **Value A**, the last plot is all you need.
+{% endtab %}
 
-### Code Comments
-
+{% tab correlations_coefficient Code Comments %}
 In this plot, we generated the line using the method `stats` that we imported with: `from scipy import stats`. 
 We calculated the slope and y-intercept from the data points and used that to plot the line. It was critically
 important to first sort the values by the x-axis (in our case, by **Value A**).
@@ -424,15 +446,15 @@ To present the $R^2$ value on the plot, we need to choose where to "print" it us
 To accomplish this, we plotted the graph with the text first, identified an open space, and then added
 the printing code. The $R^2$ value is a lot of digits after the decimal place that just get in the way. We choose to print the value
 using Python's string <a href="https://docs.python.org/3/library/string.html#format-string-syntax" 
-target="_blank">formatting</a> functionality as built into Pythons <a href="https://realpython.com/python-f-strings/" 
+target="_blank">formatting</a> functionality as built into Python's <a href="https://realpython.com/python-f-strings/" 
 target="_blank">f-string</a>. The API is a bit complicated to understand. It is similar
 to the way Java implements `printf`, only it has different escape sequences and specifics. In short, when a
 string literal is preceded with 'f' then the string is expecting to have some
 formatting sequence in it. A formatting sequence is embedded inside curly braces `{}` and the text
 inside the curly braces is interpreted. It would contain identifiers, method calls, and possibly
-formatting options following a colon. Here is the syantax for printing a floating point number with some text label:  
+formatting options following a colon. Here is the syntax for printing a floating point number with some text label:  
 
-    f'text{<identifer>:.<integer>f}'
+    f'text{<identifier>:.<integer>f}'
     
 For example, let's say we do the following:  
 
@@ -446,33 +468,40 @@ don't set these, the plot will customize the colors to match the data being plot
 want to do, but if you're attempting to see a relationship between two geospatial plots, setting vmin and
 vmax are important.    
 
-The vertical spacing between the all the plots was originally not good enough. The line plots had their
+The vertical spacing between all the plots was originally not good enough. The line plots had their
 x-axis' labels occluded by the titles of the graphs below them. So, we added vertical spacing with
 `plt.subplots_adjust(hspace=0.3)`. This actually makes the spacing be too large in the geospatial plots.
 We could have customized the spacing across all the subplots by using <a href="https://matplotlib.org/stable/gallery/userdemo/demo_gridspec03.html" target="_blank">matplotlib GridSpec</a>. But, since that code is pretty foreign and not
 at all the focus of this discussion, we left the spacing as-is.  
+{% endtab %}
+
+{% endtabs %}
 
 ## Cartopy
-
-You can make some cool plots that show the terrain of the Earth using a libary called `cartopy`. These types of plots are good to use when you're attempting to illustrate the location of something as it would appear on a map.  
+You can make some cool plots that show the terrain of the Earth using a library called `cartopy`. 
+These types of plots are good to use when you're attempting to illustrate the location of something
+as it would appear on a map.  
 
 Advantages:  
-
 * No need to manually download shape files. The library will download data for you.  
 * The plots are professional looking.  
 
 Disadvantages:  
-
+* Does not work on Replit  
 * Requires some background knowledge about different types of Coordinate and Projection systems.  
 
-You can still do some geodataframe-looking plots. For example, the <a href="https://cse163.github.io/book/module-7-geospatial-data/lesson-20-dissolve-join/hurricane-florence/HurricanFlorence.html" target="_blank">
-Hurricane Florence plot</a> is replicated on Hurricane Katrina using <a href="https://scitools.org.uk/cartopy/docs/latest/gallery/lines_and_polygons/hurricane_katrina.html#sphx-glr-gallery-lines-and-polygons-hurricane-katrina-py" target="_blank">this code</a>.
+You can still do some geodataframe-looking plots. For example, the <a href="https://cse163.github.io/book/module-7-geospatial-data/lesson-20-dissolve-join/hurricane-florence/HurricanFlorence.html" target="_blank">Hurricane Florence plot</a> is replicated on Hurricane Katrina using <a href="https://scitools.org.uk/cartopy/docs/latest/gallery/lines_and_polygons/hurricane_katrina.html#sphx-glr-gallery-lines-and-polygons-hurricane-katrina-py" target="_blank">this code</a>.
 
-This shows a direct, "flat"  Plate Carrée line between Seattle and New York as well as the curved, Geodetic line
+{% tabs cartopy %}
+
+{% tab cartopy Image %}
+This shows a direct, "flat" Plate Carrée line between Seattle and New York as well as the curved, Geodetic line
 that an airplane would travel over the curved Earth, which is a more accurate reflection of reality.
    
 ![election image](../static/geo_cartopy.jpg)
+{% endtab %}
 
+{% tab cartopy Code %}
 ```python
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
@@ -489,7 +518,7 @@ def cartopy_plot_of_us():
     # if we don't set_extent, the image is too big to be displayed (in Jupyter Notebook)
     ax.set_extent([-130, -60, 24, 50], crs=ccrs.PlateCarree())
 
-    # set the latitude and longitude points for Seattle & New york
+    # set the latitude and longitude points for Seattle & New York
     ny_lat, ny_lon = 40.73, -73.93
     sea_lat, sea_lon = 47.60, -122.33
 
@@ -497,7 +526,7 @@ def cartopy_plot_of_us():
     plt.plot([ny_lon, sea_lon], [ny_lat, sea_lat], color='blue', linewidth=2, marker='o',
              transform=ccrs.Geodetic())
 
-    # draw a line using PlateCarree() which assume a flat, paper-like map
+    # draw a line using PlateCarree() which assumes a flat, paper-like map
     plt.plot([ny_lon, sea_lon], [ny_lat, sea_lat], color='gray', linestyle='--',
              transform=ccrs.PlateCarree())
 
@@ -512,12 +541,13 @@ def cartopy_plot_of_us():
     ax.add_feature(cfeature.LAKES, alpha=0.7)
     ax.add_feature(cfeature.RIVERS)
 ```
+{% endtab %}
 
-### Data
-
+{% tab cartopy Data %}
 All the data is downloaded directly by the Cartopy library. 
+{% endtab %}
 
-### Comments
+{% tab cartopy Comments %}
 The <a href="https://scitools.org.uk/cartopy/docs/latest/reference/projections.html" target="_blank">Projection types</a> are many. One popular projection is: `ccrs.PlateCarree()`.  
 
 In this plot, we add the "stock image" of the background (textured map) to the axis. We then plot two lines onto the map using two different projection systems.  We add text labels for the city names. Lastly, we add nice features such as state borders, lakes, and rivers.  
@@ -525,3 +555,6 @@ In this plot, we add the "stock image" of the background (textured map) to the a
 We need to know the latitude & longitude positions of the two cities. Other than that, our data is virtually non-existent.  
 
 There is a lot to know about <a href="https://scitools.org.uk/cartopy/docs/latest/getting_started/index.html" target="_blank">Cartopy</a>. It can take a lot of time to learn (as with every library). So, be sure this library adds value and is appropriate for your task before you simply start using it.  
+{% endtab %}
+
+{% endtabs %}
