@@ -305,7 +305,7 @@ I've found that using Seaborn is helpful in only a few situations.
 2. When you have multiple y-values at the same x-value and you want to average them out automatically.  
 3. When you have many lines that you want to plot with different colors.  
 4. When you want to differentiate the lines using `size` or `style`.  
-5. When you want to do a scatter plot and do a [line of best fit](line_of_best_fit). 
+5. When you want to do a scatter plot and do a [line of best fit](curve_of_best_fit). 
 
 Pivoted vs Unpivoted
 **PIVOTED**  

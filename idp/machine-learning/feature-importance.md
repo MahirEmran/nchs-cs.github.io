@@ -28,7 +28,8 @@ There are several techniques to measure _feature importance_. This unit will go 
 > External Resources
 >
 > * [Scikit Learn Permutation Feature Importance](https://scikit-learn.org/stable/modules/permutation_importance.html)  
-> * [Understanding Feature Importance and How to Implement it in Python](https://towardsdatascience.com/understanding-feature-importance-and-how-to-implement-it-in-python-ff0287b20285)  
+> * [Best Practice to Calculate and Interpret Model Feature Importance](https://towardsdatascience.com/best-practice-to-calculate-and-interpret-model-feature-importance-14f0e11ee660/)  
+> * [Feature Importance in Machine Learning, Explained](https://towardsdatascience.com/feature-importance-in-machine-learning-explained-443e35b1b284/)
 > * [MSE Explained](https://datagy.io/mean-squared-error-python/)  
 > * [Linear Regression in Python](https://realpython.com/linear-regression-in-python/)  
 > * [Random Forest Classifier](https://www.datacamp.com/tutorial/random-forests-classifier-python)  

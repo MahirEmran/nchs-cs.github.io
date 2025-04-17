@@ -12,16 +12,15 @@ There are MANY sources of data and you can seek out anything and everything you 
 
 ## Sample datasets you may use for this project
 
-2. [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/) Classic datasets for machine learning (e.g., Iris, Wine Quality). Structured and reliable.
-3. [Google Dataset Search](https://datasetsearch.research.google.com/): A search engine for datasets from various sources. Helps students find project-specific data.
-4. [Data.gov](https://data.gov/): U.S. government open data (e.g., education, climate). Authoritative and real-world focused.
-5. [World Bank Data Catalog](http://data.worldbank.org/data-catalog): Global development data (e.g., GDP, health stats). Great for economic or social analyses.
-6. [NASA Open Data Portal](https://data.nasa.gov/browse): Space, climate, and earth science data. Engaging for science enthusiasts.
-7. [FiveThirtyEight](https://data.fivethirtyeight.com/): Datasets from articles on politics, sports, etc. Accessible and student-friendly.
-8. [Pew Research Center](https://www.pewresearch.org/datasets/): Public opinion and demographic data. Useful for social science projects.
-9. [UNdata](https://data.un.org/datamartinfo.aspx): United Nations stats on global issues (e.g., poverty, education). Broad and impactful.
-10. [IMDb Datasets](https://developer.imdb.com/non-commercial-datasets/): Movie and entertainment data. Fun for media-related projects.
-1. Kaggle Datasets (`Blocked at NCHS`): Thousands of datasets across domains (e.g., health, sports) with example notebooks. Ideal for beginners.
+1. [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/) Classic datasets for machine learning (e.g., Iris, Wine Quality). Structured and reliable.
+2. [Google Dataset Search](https://datasetsearch.research.google.com/): A search engine for datasets from various sources. Helps students find project-specific data.
+3. [Data.gov](https://data.gov/): U.S. government open data (e.g., education, climate). Authoritative and real-world focused.
+4. [World Bank Data Catalog](http://data.worldbank.org/data-catalog): Global development data (e.g., GDP, health stats). Great for economic or social analyses.
+5. [NASA Open Data Portal](https://data.nasa.gov/browse): Space, climate, and earth science data. Engaging for science enthusiasts.
+6. [FiveThirtyEight](https://data.fivethirtyeight.com/): Datasets from articles on politics, sports, etc. Accessible and student-friendly.
+7. [Pew Research Center](https://www.pewresearch.org/datasets/): Public opinion and demographic data. Useful for social science projects.
+8. [UNdata](https://data.un.org/datamartinfo.aspx): United Nations stats on global issues (e.g., poverty, education). Broad and impactful.
+9. [IMDb Datasets](https://developer.imdb.com/non-commercial-datasets/): Movie and entertainment data. Fun for media-related projects.
 
 ## Local Bonus:
 
@@ -42,3 +41,8 @@ There are MANY sources of data and you can seek out anything and everything you 
 * [Office for National Statistics (UK)](http://www.statistics.gov.uk/default.asp) a repository of detailed statistics about Great Britain and Northern Ireland  
 
 * [CDC NCHS Data](https://data.cdc.gov/) - CDC’s National Center for Health Statistics Data Access  
+
+{: .warn}
+The following are blocked at NCHS, but you may find them useful to browse in your own time:
+* [Reddit Data Sets](https://www.reddit.com/r/datasets/)  
+* [Kaggle Datasets](www.kaggle.com) (Thousands of datasets across domains (e.g., health, sports) with example notebooks. Ideal for beginners.)

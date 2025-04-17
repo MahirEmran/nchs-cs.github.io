@@ -19,12 +19,12 @@ The current folders are:
 - ml/ (info on machine learning, both code and concepts)
 
 Here is a list of the current files available, along with a description:
-- [collections.md](api/collections.md) (a 'cheatsheet' for methods on lists, sets, dictionaries, and tuples)
-- [pandas_df.md](api/pandas_df) (a guide on various methods on DataFrames in the Pandas library)
-- [f-strings.md](api/f-strings) (a guide on formatted strings)
-- [method_args.md](api/method_args) (a guide on `*args` and `**kwargs`)
-- [writing_comments.md](misc/writing_comments) (a guide for how to write good inline and docstring comments for your methods - **useful for homeworks**)
-- [flake8.md](misc/flake8) (an explanation on the flake8 extension, and the rules turned off)
+- [collections.md](collections) (a 'cheatsheet' for methods on lists, sets, dictionaries, and tuples)
+- [pandas_df.md](pandas_df) (a guide on various methods on DataFrames in the Pandas library)
+- [f-strings.md](f-strings) (a guide on formatted strings)
+- [method_args.md](method_args) (a guide on `*args` and `**kwargs`)
+- [writing_comments.md](mwriting_comments) (a guide for how to write good inline and docstring comments for your methods - **useful for homeworks**)
+- [flake8.md](flake8) (an explanation on the flake8 extension, and the rules turned off)
 
 
 

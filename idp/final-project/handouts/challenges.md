@@ -34,7 +34,7 @@ Many students have attempted this with great failure. This challenge goal requir
 
 ## New Library
 Learn a new Python library and use it in your project in a significant way to help with your analysis. Part of this class is being able to learn libraries in Python. Show that you are able to take what you’ve learned in the context of learning a library we have not discussed in-depth in this course. Here are some recommended libraries.
-* Download from Web: [requests](https://2.python-requests.org/en/master/)
+* Download from Web: [requests](https://pypi.org/project/requests/)
 * Scientific Computing: [SciPy](https://www.scipy.org/)
 * Folium for interactive geo plots:[Folium](https://python-visualization.github.io/folium/latest/getting_started.html)
 * Natural Language Processing: [spaCy](https://spacy.io/)
