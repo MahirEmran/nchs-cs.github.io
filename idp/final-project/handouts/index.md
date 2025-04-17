@@ -54,6 +54,6 @@ You will deliver your final code in GitHub using the original starting project p
 
 You will implement and deliver these either with the `Data Organization` and/or `Final Code and Report` deliverable.  
 
-## #5: [Final Presentation](presentation.md)
+## #5: [Final Presentation](presentation)
 
 This will be your **story** -- a verbal presentation of your Data Science results colored by your subjective journey through the project. You will introduce your research topic, provide context and goals. In short, show plots and explain the results. You will have a slide deck that is almost exclusively a collection of the plots that tell a story.  
