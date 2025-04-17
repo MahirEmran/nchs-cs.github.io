@@ -23,7 +23,7 @@ It is better to have more data than not enough. If your data is especially large
 
 ## Research Questions & Motivation
 
-Review tips & help for research questions [here](../research)
+Review tips & help for research questions [here](./research)
 
 ## Data Description
 

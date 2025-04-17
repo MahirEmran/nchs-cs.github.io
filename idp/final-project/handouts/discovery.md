@@ -53,4 +53,4 @@ The Discovery Document's purpose is to:
 
 ## Grading
 
-Grading for this document will follow this rubric guide [here](/idp/final-project/handouts/rubric)
+Grading for this document will follow this rubric guide [here](./rubric)
